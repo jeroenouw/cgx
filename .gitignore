@@ -1,0 +1,34 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# dotenv environment variables file
+.env
+
+# Source
+.vscode
+dist
+**/*.css
+!*.config.js
+!**/*-*.js
+!**/*.index.bundle.js
+!**/*-*.css
+service-worker.js
+!*.index.bundle.js
+*.data
+lib/
+
+# Other
+package-lock.json
