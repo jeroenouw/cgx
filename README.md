@@ -1,6 +1,8 @@
 # CGX - CLI to Generate recommended Community files
 
-Do you want people to contribute to your project? Make it easy for your contributers. Generate all the recommended files (pre-filled) for the Github community standards.
+Do you want people to contribute to your project? Make it easy for your contributers. Generate all the recommended files (pre-filled) for the Github community standards.  
+
+Useful for every project (existing or new, large or small, every language)
 
 ## Files
 * License
