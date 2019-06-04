@@ -18,25 +18,20 @@ export class CGX {
 
     public async executeCGX(): Promise<void> {
         let askFileAnswer: Answer = await this.askFileQuestion();
-        let confirmAnswer: Answer = await this.confirmQuestion();
 
-        if (confirmAnswer.confirm === true) {
-            if (askFileAnswer.files === ChoiceValue.ALL) {
+        switch(askFileAnswer.files) {
+            case ChoiceValue.ALL: {
                 this.logger.showInfo('Start generating all recommended files...');
 
                 this.codeOfConduct.generateCodeOfConduct();
                 this.license.generateLicense();
             }
-
-            if (askFileAnswer.files === ChoiceValue.CODE_OF_CONDUCT) {
+            case ChoiceValue.CODE_OF_CONDUCT: {
                 this.codeOfConduct.generateCodeOfConduct();
             }
-        
-            if (askFileAnswer.files === ChoiceValue.LICENSE) {
+            case ChoiceValue.LICENSE: {
                 this.license.generateLicense();
             }
-        } else {
-            this.logger.showInfo('Not confirmed...');
         }
     }
 
@@ -54,17 +49,8 @@ export class CGX {
         return inquirer.prompt([{ 
             name: 'files',
             type: 'list',
-            message: 'Select which files do you want to generate?',
+            message: 'Which files do you want to generate?',
             choices: listOfFiles
-        }]);
-    }
-
-    private confirmQuestion(): Promise<any> {
-        return inquirer.prompt([{
-            name: 'confirm',
-            type: 'confirm',
-            message: 'Please confirm?',
-            default: false
         }]);
     }
 }

@@ -18,10 +18,33 @@ export class License {
         if (!check) {
             const filepath: string = process.cwd() + `/LICENSE`;
             let githubNameAnswer: Answer = await this.githubNameQuestion();
+            let fileContent: string = this.fileContent(githubNameAnswer.githubName);
 
-            const fileContent: string = `MIT License
+            fs.writeFile(filepath, fileContent, (err) => {
+                this.logger.showGenerated('LICENSE', filepath);
+                if (err) throw err;
+            });
+        }
+        else {
+            this.logger.showError('LICENSE already exists!');
+            process.exit(1);
+        }
+    }
 
-Copyright (c) 2019 ${githubNameAnswer.githubName}
+    private githubNameQuestion(): Promise<any> {
+        return inquirer.prompt([{
+            name: 'githubName',
+            type: 'input',
+            message: 'Please fill in your Github name',
+        }]);
+    }
+
+    private fileContent(githubName: string): string {
+        let currentYear = new Date().getFullYear();
+        
+        return `MIT License
+
+Copyright (c) ${currentYear} ${githubName}
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -41,23 +64,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
         `;
-
-            fs.writeFile(filepath, fileContent, (err) => {
-                this.logger.showGenerated('LICENSE', filepath);
-                if (err) throw err;
-            });
-        }
-        else {
-            this.logger.showError('LICENSE already exists!');
-            process.exit(1);
-        }
-    }
-
-    private githubNameQuestion(): Promise<any> {
-        return inquirer.prompt([{
-            name: 'githubName',
-            type: 'input',
-            message: 'Please fill in your Github name',
-        }]);
     }
 }

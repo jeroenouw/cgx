@@ -10,7 +10,26 @@ export class CodeOfConduct {
                 @inject('Checker') private checker: Checker) {}
 
     public generateCodeOfConduct(): void {
-        const fileContent: string = `# Contributor Covenant Code of Conduct
+        this.logger.showInfo('Start generating CODE OF CONDUCT...');
+
+        const check = this.checker.checkExistence(`/CODE_OF_CONDUCT.md`)
+        if (!check) {
+            const filepath: string = process.cwd() + `/CODE_OF_CONDUCT.md`;
+            const fileContent: string = this.fileContent();
+
+            fs.writeFile(filepath, fileContent, (err) => {
+                this.logger.showGenerated('CODE OF CONDUCT', filepath);
+                if (err) throw err;
+            });
+        }
+        else {
+            this.logger.showError('CODE OF CONDUCT already exists!');
+            process.exit(1);
+        }
+    };
+
+    private fileContent(): string {
+        return `# Contributor Covenant Code of Conduct
 
 ## Our Pledge
 
@@ -57,21 +76,5 @@ This Code of Conduct is adapted from the [Contributor Covenant][homepage], versi
 [homepage]: http://contributor-covenant.org
 [version]: http://contributor-covenant.org/version/1/4/
         `;
-        
-        this.logger.showInfo('Start generating CODE OF CONDUCT...');
-
-        const filepath: string = process.cwd() + `/CODE_OF_CONDUCT.md`;
-        const check = this.checker.checkExistence(`/CODE_OF_CONDUCT.md`)
-
-        if (!check) {
-            fs.writeFile(filepath, fileContent, (err) => {
-                this.logger.showGenerated('CODE OF CONDUCT', filepath);
-                if (err) throw err;
-            });
-        }
-        else {
-            this.logger.showError('CODE OF CONDUCT already exists!');
-            process.exit(1);
-        }
-    };
+     }
 }
