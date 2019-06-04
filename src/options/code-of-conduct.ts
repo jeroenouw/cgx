@@ -10,20 +10,21 @@ export class CodeOfConduct {
                 @inject('Checker') private checker: Checker) {}
 
     public generateCodeOfConduct(): void {
-        this.logger.showInfo('Start generating CODE OF CONDUCT...');
+        const fileName = 'CODE_OF_CONDUCT.md';
+        this.logger.showStartGenerating(fileName);
 
-        const check = this.checker.checkExistence(`/CODE_OF_CONDUCT.md`)
+        const check = this.checker.checkExistence(`/${fileName}`)
         if (!check) {
-            const filepath: string = process.cwd() + `/CODE_OF_CONDUCT.md`;
+            const filepath: string = process.cwd() + `/${fileName}`;
             const fileContent: string = this.fileContent();
 
             fs.writeFile(filepath, fileContent, (err) => {
-                this.logger.showGenerated('CODE OF CONDUCT', filepath);
+                this.logger.showCreated(fileName, filepath);
                 if (err) throw err;
             });
         }
         else {
-            this.logger.showError('CODE OF CONDUCT already exists!');
+            this.logger.showError(`${fileName} already exists!`);
             process.exit(1);
         }
     };

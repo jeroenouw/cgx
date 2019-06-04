@@ -12,21 +12,22 @@ export class License {
                 @inject('Checker') private checker: Checker) {}
 
     public async generateLicense(): Promise<void> {
-        this.logger.showInfo('Start generating LICENSE...');
-        let check = this.checker.checkExistence(`/LICENSE`)
+        const fileName = 'LICENSE';
+        this.logger.showStartGenerating(fileName);
 
+        const check = this.checker.checkExistence(`/${fileName}`)
         if (!check) {
-            const filepath: string = process.cwd() + `/LICENSE`;
+            const filepath: string = process.cwd() + `/${fileName}`;
             let githubNameAnswer: Answer = await this.githubNameQuestion();
             let fileContent: string = this.fileContent(githubNameAnswer.githubName);
 
             fs.writeFile(filepath, fileContent, (err) => {
-                this.logger.showGenerated('LICENSE', filepath);
+                this.logger.showCreated(fileName, filepath);
                 if (err) throw err;
             });
         }
         else {
-            this.logger.showError('LICENSE already exists!');
+            this.logger.showError(`${fileName} already exists!`);
             process.exit(1);
         }
     }
@@ -35,7 +36,7 @@ export class License {
         return inquirer.prompt([{
             name: 'githubName',
             type: 'input',
-            message: 'Please fill in your Github name',
+            message: 'Please fill in your Github username:',
         }]);
     }
 
