@@ -16,14 +16,12 @@ export class Logger {
             // .version(packageJson.version)
             .version('0.0.1')
             .description(cyan('Generate all recommended files for the Github community standards'))
-            .option('--all, --all-files', 'Generate all files')
-            .option('--coc, --code-of-conduct', 'Generate CODE OF CONDUCT markdown')
-            .option('--l, --license', 'Generate LICENSE')
             .outputHelp();
     }
 
     public showBanner(): void {
         console.log(cyan(figlet.textSync('CGX', { horizontalLayout: 'full' })));
+        console.info(cyan('Generate all recommended files for the Github community standards'));
     }
       
     public showError(message: string | Error, includeHelp = false): void {
@@ -45,6 +43,6 @@ export class Logger {
     }
       
     public showGenerated(message: string, filePath: string): void {
-        console.log(green('GENERATED: ') + `${message} in ${filePath}` + this.newLine);
+        console.log(green('GENERATED: ') + `${message} in ${filePath}`);
     }
 }
