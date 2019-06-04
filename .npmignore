@@ -1,9 +1,13 @@
 # Relevant files
 !lib/**
+
+# Unrelevant files
 src/**
 .gitignore
+.github/
 CODE_OF_CONDUCT.md
 CONTRIBUTING.md
 package-lock.json
 tsconfig.json
 tslint.json
+community-score.png
