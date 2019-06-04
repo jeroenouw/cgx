@@ -1,4 +1,4 @@
-# CGX - Generate recommended Community files
+# CGX - CLI to Generate recommended Community files
 
 Generate all pre-filled recommended files for the community standards, so people can easily contribute to your project.
 
@@ -16,15 +16,15 @@ Generate all pre-filled recommended files for the community standards, so people
 
 ## Quickstart
 
-Install the CGI CLI as a global CLI.
+Install the CGX CLI as a global CLI.
 
 ```shell
-npm install -g cgi
+npm install -g cgx
 
 cd <your-repo-location>
 
 # Then you run
-cgi
+cgx
 ```
 
 Or just use via npx:
@@ -33,7 +33,7 @@ Or just use via npx:
 cd <your-repo-location>
 
 # Then you run
-npx cgi
+npx cgx
 ```
 
 This should start the CLI and ask for questions about which files you want to add!
