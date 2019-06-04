@@ -61,7 +61,7 @@ export class CGX {
     private async askFileQuestion(): Promise<any> {
         const listOfFiles: Choice[] = [
             {name: 'All files (without license)', value: ChoiceValue.ALL},
-            {name: 'License (MIT)', value: ChoiceValue.LICENSE},
+            {name: 'License', value: ChoiceValue.LICENSE},
             {name: 'Code of conduct', value: ChoiceValue.CODE_OF_CONDUCT},
             {name: 'Contributing', value: ChoiceValue.CONTRIBUTING},
             {name: 'Bug report (issue)', value: ChoiceValue.BUG_REPORT},
