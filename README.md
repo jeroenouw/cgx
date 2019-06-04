@@ -1,6 +1,6 @@
 # CGX - CLI to Generate recommended Community files
 
-Generate all pre-filled recommended files for the community standards, so people can easily contribute to your project.
+Generate all pre-filled recommended files for the Github community standards, so people can easily contribute to your project.
 
 ## Files
 * License
@@ -40,6 +40,30 @@ This should start the CLI and ask for questions about which files you want to ad
 
 ## Example
 
+Generate all files example:
+```shell
+   ____    ____  __  __
+  / ___|  / ___| \ \/ /
+ | |     | |  _   \  /
+ | |___  | |_| |  /  \
+  \____|  \____| /_/\_\
+
+Generate all recommended files for the Github community standards
+? Which files do you want to generate? All files (without license)
+INFO: Start generating all recommended files...
+
+GENERATING: CODE_OF_CONDUCT.md...
+GENERATING: CONTRIBUTING.md...
+GENERATING: bug_report.md...
+GENERATING: feature_request.md...
+GENERATING: pull_request_template.md...
+CREATED: bug_report.md in <path-to-folder>/.github/ISSUE_TEMPLATE/bug_report.md
+CREATED: CODE_OF_CONDUCT.md in <path-to-folder>/CODE_OF_CONDUCT.md.md
+CREATED: CONTRIBUTING.md in <path-to-folder>/CONTRIBUTING.md
+CREATED: feature_request.md in <path-to-folder>/.github/ISSUE_TEMPLATE/feature_request.md
+CREATED: pull_request_template.md in <path-to-folder>/.github/PULL_REQUEST_TEMPLATE/pull_request_template.md
+```
+
 Generate license example:  
 ```shell  
    ____    ____  __  __
@@ -48,19 +72,19 @@ Generate license example:
  | |___  | |_| |  /  \
   \____|  \____| /_/\_\
 
+Generate all recommended files for the Github community standards
 ? Select which files do you want to generate? License
 ? Please confirm? Yes
-? Please fill in your Github name: Jeroenouw
-INFO: Start generating LICENSE...
-
-GENERATED: LICENSE in <path-to-folder>/LICENSE
+? Please fill in your Github name: jeroenouw
+GENERATING: LICENSE...
+CREATED: LICENSE in <path-to-folder>/LICENSE
 ```
 
 Generate file question: 
 ```shell  
-? Select which files do you want to generate? (Use arrow keys)
-❯ All files
-  License
+? Which files do you want to generate? (Use arrow keys)
+❯ All files (without license)
+  License (MIT)
   Code of conduct
   Contributing
   Bug report (issue)
