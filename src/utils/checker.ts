@@ -19,4 +19,11 @@ export class Checker {
         const check = fs.existsSync(process.cwd() + path)
         return check;
     };
+
+    public checkIfDirExist(path: string): void {
+        const folder = this.checkExistence(path)
+        if (!folder) {
+            fs.mkdirSync(process.cwd() + path, { recursive: true });
+        }
+    }
 }

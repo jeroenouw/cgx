@@ -41,8 +41,12 @@ export class Logger {
     public showInfo(message: string): void {
         console.info(cyan('INFO: ') + message + this.newLine);
     }
+
+    public showStartGenerating(fileName: string): void {
+        console.log(cyan('GENERATING: ') + `${fileName}...`);
+    }
       
-    public showGenerated(message: string, filePath: string): void {
-        console.log(green('GENERATED: ') + `${message} in ${filePath}`);
+    public showCreated(message: string, filePath: string): void {
+        console.log(green('CREATED: ') + `${message} in ${filePath}`);
     }
 }
