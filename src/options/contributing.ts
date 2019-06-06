@@ -1,39 +1,20 @@
-import fs from 'fs-extra';
-
 import { injectable, inject } from 'inversify';
-import { Logger } from '../utils/logger';
-import { Checker } from '../utils/checker';
+import { DefaultTemplate, GenerateFile } from './default/default.template';
 
 @injectable()
-export class Contributing {
-    constructor(@inject('Logger') private logger: Logger,
-                @inject('Checker') private checker: Checker) {}
+export class Contributing implements GenerateFile {
+    private fileName = 'CONTRIBUTING.md';
 
-    public generateContributing(): void {
-        const fileName = 'CONTRIBUTING.md';
-        this.logger.showStartGenerating(fileName);
+    constructor(@inject('DefaultTemplate') private defaultTemplate: DefaultTemplate) {}
 
-        const check = this.checker.checkExistence(`/${fileName}`)
-        if (!check) {
-            const filepath: string = process.cwd() + `/${fileName}`;
-            const fileContent: string = this.fileContent();
-
-            fs.writeFile(filepath, fileContent, (err) => {
-                this.logger.showCreated(fileName, filepath);
-                if (err) throw err;
-            });
-        }
-        else {
-            this.logger.showError(`${fileName} already exists!`);
-            process.exit(1);
-        }
-    };
+    public generateFile(): void {
+        this.defaultTemplate.generateFile(this.fileName, this.fileContent());
+    }
 
     private fileContent(): string {
         return `## Contributing
 
 First fork this project.  
-
 
 * git clone <your-forked-repo>
 * npm install

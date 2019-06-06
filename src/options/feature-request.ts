@@ -1,35 +1,18 @@
-import fs from 'fs-extra';
-
 import { injectable, inject } from 'inversify';
-import { Logger } from '../utils/logger';
-import { Checker } from '../utils/checker';
+import { DefaultTemplate, GenerateFile } from './default/default.template';
+import { Path } from '../models/path';
 
 @injectable()
-export class FeatureRequest {
-    constructor(@inject('Logger') private logger: Logger,
-                @inject('Checker') private checker: Checker) {}
+export class FeatureRequest implements GenerateFile {
+    private fileName = 'feature_request.md';
+    private hasPath = true;
+    private pathOfFile = Path.ISSUE_TEMPLATE;
 
-    public generateFeatureRequest(): void {
-        const fileName = 'feature_request.md';
-        this.logger.showStartGenerating(fileName);
+    constructor(@inject('DefaultTemplate') private defaultTemplate: DefaultTemplate) {}
 
-        this.checker.checkIfDirExist(`/.github/ISSUE_TEMPLATE`);
-
-        const check = this.checker.checkExistence(`/${fileName}`)
-        if (!check) {
-            const filepath: string = process.cwd() + `/.github/ISSUE_TEMPLATE/${fileName}`;
-            let fileContent: string = this.fileContent();
-
-            fs.writeFile(filepath, fileContent, (err) => {
-                this.logger.showCreated(fileName, filepath);
-                if (err) throw err;
-            });
-        }
-        else {
-            this.logger.showError(`${fileName} already exists!`);
-            process.exit(1);
-        }
-    };
+    public generateFile(): void {
+        this.defaultTemplate.generateFile(this.fileName, this.fileContent(), this.hasPath, this.pathOfFile);
+    }
 
     private fileContent(): string {
         return `---

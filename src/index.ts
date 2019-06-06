@@ -9,6 +9,7 @@ import { Contributing } from './options/contributing';
 import { BugReport } from './options/bug-report';
 import { FeatureRequest } from './options/feature-request';
 import { PullRequestTemplate } from './options/pull-request-template';
+import { DefaultTemplate } from './options/default/default.template';
 
 export function index(): CGX {
   const container: Container = new Container();
@@ -16,6 +17,9 @@ export function index(): CGX {
   // Utils
   container.bind<Logger>('Logger').to(Logger).inSingletonScope();
   container.bind<Checker>('Checker').to(Checker).inSingletonScope();
+
+  // Default Template
+  container.bind<DefaultTemplate>('DefaultTemplate').to(DefaultTemplate).inSingletonScope();
 
   // Options
   container.bind<CodeOfConduct>('CodeOfConduct').to(CodeOfConduct).inSingletonScope();

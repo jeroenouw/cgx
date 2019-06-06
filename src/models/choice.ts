@@ -23,4 +23,5 @@ export enum ChoiceValue {
 export enum LicenseValue {
     MIT = 'MIT',
     APACHE = 'APACHE',
+    ISC = 'ISC',
 }

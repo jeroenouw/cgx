@@ -9,6 +9,7 @@ import { Contributing } from './options/contributing';
 import { BugReport } from './options/bug-report';
 import { FeatureRequest } from './options/feature-request';
 import { PullRequestTemplate } from './options/pull-request-template';
+import { DefaultTemplate } from './options/default/default.template';
 
 @injectable()
 export class CGX {
@@ -19,41 +20,42 @@ export class CGX {
                 @inject('Contributing') private contributing: Contributing,
                 @inject('BugReport') private bugReport: BugReport,
                 @inject('FeatureRequest') private featureRequest: FeatureRequest,
-                @inject('PullRequestTemplate') private pullRequestTemplate: PullRequestTemplate) {
+                @inject('PullRequestTemplate') private pullRequestTemplate: PullRequestTemplate,
+                @inject('DefaultTemplate') private defaultTemplate: DefaultTemplate) {
         this.logger.showBanner();
         this.executeCGX();
     }
 
-    public async executeCGX(): Promise<void> {
+    public async executeCGX(): Promise<any> {
         let askFileAnswer: Answer = await this.askFileQuestion();
 
         switch(askFileAnswer.files) {
             case ChoiceValue.ALL: {
                 this.logger.showInfo('Start generating all recommended files...');
 
-                this.codeOfConduct.generateCodeOfConduct();
-                this.contributing.generateContributing();
-                this.bugReport.generateBugReport();
-                this.featureRequest.generateFeatureRequest();
-                return this.pullRequestTemplate.generatePullRequestTemplate();
+                this.codeOfConduct.generateFile();
+                this.contributing.generateFile();
+                this.bugReport.generateFile();
+                this.featureRequest.generateFile();
+                return this.pullRequestTemplate.generateFile();
             }
             case ChoiceValue.LICENSE: {
                 return this.license.generateLicense();
             }
             case ChoiceValue.CODE_OF_CONDUCT: {
-                return this.codeOfConduct.generateCodeOfConduct();
+                return this.codeOfConduct.generateFile();
             }
             case ChoiceValue.CONTRIBUTING: {
-                return this.contributing.generateContributing();
+                return this.contributing.generateFile();
             }
             case ChoiceValue.BUG_REPORT: {
-                return this.bugReport.generateBugReport();
+                return this.bugReport.generateFile();
             }
             case ChoiceValue.FEATURE_REQUEST: {
-                return this.featureRequest.generateFeatureRequest();
+                return this.featureRequest.generateFile();
             }
             case ChoiceValue.PULL_REQUEST_TEMPLATE: {
-                return this.pullRequestTemplate.generatePullRequestTemplate();
+                return this.pullRequestTemplate.generateFile();
             }
         }
     }
