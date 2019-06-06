@@ -1,6 +1,6 @@
 {
   "name": "cgx",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Generate all the recommended files (pre-filled) for the Github community standards",
   "author": "Jeroen Ouwehand",
   "repository": "https://github.com/jeroenouw/cgx",

@@ -1,11 +1,19 @@
 # CGX - CLI to Generate recommended Community files
 
-Do you want people to contribute to your project? Make it easy for your contributers. Generate all the recommended files (pre-filled) for the Github community standards.  
+[![npmversion](https://img.shields.io/npm/v/cgx.svg)](https://github.com/jeroenouw/cgx)
+[![npmlicense](https://img.shields.io/npm/l/cgx.svg)](https://github.com/jeroenouw/cgx/blob/master/LICENSE/)
+[![downloads](https://img.shields.io/npm/dy/cgx.svg)](https://github.com/jeroenouw/cgx)
 
-Useful for every project (existing or new, large or small, every language)
+Do you want people to contribute to your project? Make it easy for your contributors. Generate all the recommended files (pre-filled) for the Github community standards.  
 
-## Files
-* License
+## Useful for every project
+* Existing or new
+* Large or small
+* Every language
+
+## Files that can be generated
+More files in future versions.
+* License (MIT, ISC or Apache 2.0)
 * Code of Conduct
 * Contributing
 * Bug report (issue)
@@ -84,13 +92,10 @@ Generate file question:
 ```shell  
 ? Which files do you want to generate? (Use arrow keys)
 ❯ All files (without license)
-  License (MIT)
+  License
   Code of conduct
   Contributing
   Bug report (issue)
   Feature request (issue)
   Pull request template
 ```
-
-## Todo
-* More pre-filled template options per file
