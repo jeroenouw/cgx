@@ -1,6 +1,4 @@
 import { red, green, cyan } from 'kleur';
-// import * as packageJson from '../../package.json';
-const program = require('commander');
 const figlet = require('figlet');
 
 import { injectable } from 'inversify';
@@ -9,29 +7,13 @@ import { injectable } from 'inversify';
 export class Logger {
     private newLine = '\n';
 
-    constructor() {}
-
-    public showHelp(): void {
-        return program
-            // .version(packageJson.version)
-            .version('0.0.1')
-            .description(cyan('Generate all recommended files for the Github community standards'))
-            .outputHelp();
-    }
-
     public showBanner(): void {
         console.log(cyan(figlet.textSync('CGX', { horizontalLayout: 'full' })));
         console.info(cyan('Generate all recommended files for the Github community standards'));
     }
       
-    public showError(message: string | Error, includeHelp = false): void {
+    public showError(message: string | Error): void {
         console.error(red('ERROR: ') + message + this.newLine);
-
-        if (includeHelp) {
-            this.showHelp();
-        } else {
-            console.log('');
-        }
     }
       
     public showSuccess(message: string): void {
