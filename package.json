@@ -1,6 +1,6 @@
 {
   "name": "cgx",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Generate all the recommended files (pre-filled) for the Github and Gitlab community standards",
   "author": "Jeroen Ouwehand",
   "repository": "https://github.com/jeroenouw/cgx",
@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@types/fs-extra": "^5.0.5",
+    "commander": "^2.20.0",
     "figlet": "^1.2.1",
     "fs-extra": "^8.0.0",
     "inquirer": "^6.3.1",
