@@ -1,7 +1,7 @@
 export interface Answer {
     files: Object;
     confirm: boolean;
-    githubName: string;
+    userName: string;
     licenses: LicenseValue;
     provider: ProviderValue;
 }
