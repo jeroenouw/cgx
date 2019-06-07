@@ -1,12 +1,12 @@
 import { injectable, inject } from 'inversify';
-import { DefaultTemplate, GenerateFile } from './default/default.template';
-import { Path } from '../models/path';
+import { DefaultTemplate, GenerateFile } from '../default/default.template';
+import { GithubPath } from '../../models/path';
 
 @injectable()
 export class FeatureRequest implements GenerateFile {
     private fileName = 'feature_request.md';
     private hasPath = true;
-    private pathOfFile = Path.ISSUE_TEMPLATE;
+    private pathOfFile = GithubPath.ISSUE_TEMPLATE;
 
     constructor(@inject('DefaultTemplate') private defaultTemplate: DefaultTemplate) {}
 

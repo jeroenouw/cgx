@@ -1,5 +1,5 @@
 import { injectable, inject } from 'inversify';
-import { DefaultTemplate, GenerateFile } from './default/default.template';
+import { DefaultTemplate, GenerateFile } from '../default/default.template';
 
 @injectable()
 export class Contributing implements GenerateFile {

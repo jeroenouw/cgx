@@ -2,9 +2,9 @@ import fs from 'fs-extra';
 import inquirer from 'inquirer';
 
 import { injectable, inject } from 'inversify';
-import { Logger } from '../utils/logger';
-import { Checker } from '../utils/checker';
-import { Answer, Choice, LicenseValue } from '../models/choice';
+import { Logger } from '../../utils/logger';
+import { Checker } from '../../utils/checker';
+import { Answer, Choice, LicenseValue } from '../../models/choice';
 
 @injectable()
 export class License {
