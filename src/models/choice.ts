@@ -8,17 +8,30 @@ export interface Answer {
 
 export interface Choice {
     name: string;
-    value: ChoiceValue | LicenseValue | ProviderValue;
+    value: UniversalChoiceValue | 
+           GithubChoiceValue | 
+           GitlabChoiceValue | 
+           LicenseValue | 
+           ProviderValue;
 }
 
-export enum ChoiceValue {
+export enum UniversalChoiceValue {
     ALL = 'ALL',
     LICENSE = 'LICENSE',
-    CODE_OF_CONDUCT = 'CODE_OF_CONDUCT',
     CONTRIBUTING = 'CONTRIBUTING',
+}
+
+export enum GithubChoiceValue {
+    CODE_OF_CONDUCT = 'CODE_OF_CONDUCT',
     BUG_REPORT = 'BUG_REPORT',
     FEATURE_REQUEST = 'FEATURE_REQUEST',
     PULL_REQUEST_TEMPLATE = 'PULL_REQUEST_TEMPLATE',
+}
+
+export enum GitlabChoiceValue {
+    BUG = 'BUG',
+    CI_TEMPLATE = 'CI_TEMPLATE',
+    FEATURE_PROPOSAL = 'FEATURE_PROPOSAL',
     MERGE_REQUEST_TEMPLATE = 'MERGE_REQUEST_TEMPLATE',
 }
 

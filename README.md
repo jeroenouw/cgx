@@ -14,12 +14,24 @@ Do you want people to contribute to your project? Make it easy for your contribu
 
 ## Files that can be generated
 More files in future versions.
+
+### Github & Gitlab
 * License (MIT, ISC or Apache 2.0)
-* Code of Conduct
 * Contributing
+
+### Github specific
+* Code of Conduct
 * Bug report (issue)
 * Feature request (issue)
 * Pull request template
+* All files at once
+
+### Gitlab specific
+* CI template
+* Bug (issue)
+* Feature proposal (issue)
+* Merge request
+* All files at once
 
 ![](community-score.png)
 
@@ -73,6 +85,25 @@ CREATED: feature_request.md in <path-to-folder>/.github/ISSUE_TEMPLATE/feature_r
 CREATED: pull_request_template.md in <path-to-folder>/.github/PULL_REQUEST_TEMPLATE/pull_request_template.md
 ```
 
+Git provider question:
+```shell
+? Select a Git hosting provider: (Use arrow keys)
+❯ Github
+  Gitlab
+```
+
+Generate file question: 
+```shell  
+? Which files do you want to generate? (Use arrow keys)
+❯ All files (without license)
+  License
+  Code of conduct
+  Contributing
+  Bug report (issue)
+  Feature request (issue)
+  Pull request template
+```
+
 Generate license example:  
 ```shell  
    ____    ____  __  __
@@ -87,16 +118,4 @@ Generate all recommended files for the Github community standards
 ? Please fill in your Github name: jeroenouw
 GENERATING: LICENSE...
 CREATED: LICENSE in <path-to-folder>/LICENSE
-```
-
-Generate file question: 
-```shell  
-? Which files do you want to generate? (Use arrow keys)
-❯ All files (without license)
-  License
-  Code of conduct
-  Contributing
-  Bug report (issue)
-  Feature request (issue)
-  Pull request template
 ```

@@ -1,7 +1,7 @@
 {
   "name": "cgx",
-  "version": "1.1.0",
-  "description": "Generate all the recommended files (pre-filled) for the Github community standards",
+  "version": "1.2.0",
+  "description": "Generate all the recommended files (pre-filled) for the Github and Gitlab community standards",
   "author": "Jeroen Ouwehand",
   "repository": "https://github.com/jeroenouw/cgx",
   "license": "MIT",
@@ -20,17 +20,16 @@
   ],
   "scripts": {
     "start": "npm run build && npm run global",
-    "publish": "npm run build && npm publish",
     "build": "tsc -p .",
     "global": "npm i -g && cgx",
     "clean": "rm -rf ./lib",
     "refresh": "rm -rf ./node_modules ./package-lock.json ./lib && npm install",
     "tscov": "tscov --min-coverage 90",
-    "tscov:d": "tscov --details"
+    "tscov:d": "tscov --details",
+    "publish-package": "npm run build && npm publish"
   },
   "dependencies": {
     "@types/fs-extra": "^5.0.5",
-    "commander": "^2.20.0",
     "figlet": "^1.2.1",
     "fs-extra": "^8.0.0",
     "inquirer": "^6.3.1",

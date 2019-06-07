@@ -6,4 +6,5 @@ export enum GithubPath {
 export enum GitlabPath {
     ISSUE_TEMPLATE = '/.gitlab/issue_templates',
     MERGE_REQUEST_TEMPLATE = '/.gitlab/merge_request_templates',
+    CI = '/.gitlab/ci',
 }

@@ -1,10 +1,10 @@
 import fs from 'fs-extra';
-import inquirer from 'inquirer';
 
 import { injectable, inject } from 'inversify';
 import { Logger } from '../../utils/logger';
 import { Checker } from '../../utils/checker';
-import { Answer, Choice, LicenseValue } from '../../models/choice';
+import { Answer, LicenseValue } from '../../models/choice';
+import { userNameQuestion, licenseQuestion } from '../../questions';
 
 @injectable()
 export class License {
@@ -23,8 +23,8 @@ export class License {
         const check = this.checker.checkExistence(`/${fileName}`)
         if (!check) {
             const filepath: string = process.cwd() + `/${fileName}`;
-            let licenseAnswer: Answer = await this.licenseQuestion();
-            let githubNameAnswer: Answer = await this.githubNameQuestion();
+            let licenseAnswer: Answer = await licenseQuestion();
+            let githubNameAnswer: Answer = await userNameQuestion();
 
             switch(licenseAnswer.licenses) {
                 case LicenseValue.APACHE: {
@@ -52,29 +52,6 @@ export class License {
             this.logger.showCreated(fileName, filepath);
             if (err) {throw err};
         });
-    }
-
-    private async licenseQuestion(): Promise<any> {
-        const listOfLicenses: Choice[] = [
-            {name: 'Apache 2.0 License', value: LicenseValue.APACHE},
-            {name: 'MIT License', value: LicenseValue.MIT},
-            {name: 'ISC License', value: LicenseValue.ISC},
-        ];
-
-        return inquirer.prompt([{ 
-            name: 'licenses',
-            type: 'list',
-            message: 'Which type of license do you want to generate?',
-            choices: listOfLicenses
-        }]);
-    }
-
-    private githubNameQuestion(): Promise<any> {
-        return inquirer.prompt([{
-            name: 'githubName',
-            type: 'input',
-            message: 'Please fill in your Github username:',
-        }]);
     }
 
     private MITfileContent(githubName: string): string {

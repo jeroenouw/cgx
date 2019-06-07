@@ -1,15 +1,10 @@
-import inquirer from 'inquirer';
-
 import { injectable, inject } from 'inversify';
 import { Logger } from './utils/logger';
-import { CodeOfConduct } from './options/github/code-of-conduct';
-import { License } from './options/github/license';
-import { Choice, ChoiceValue, Answer, ProviderValue } from './models/choice';
-import { Contributing } from './options/github/contributing';
-import { BugReport } from './options/github/bug-report';
-import { FeatureRequest } from './options/github/feature-request';
-import { PullRequestTemplate } from './options/github/pull-request-template';
-import { MergeRequestTemplate } from './options/gitlab/merge-request-template';
+import { Contributing, License } from './options/universal';
+import { CodeOfConduct, BugReport, FeatureRequest, PullRequestTemplate } from './options/github';
+import { UniversalChoiceValue, GithubChoiceValue, GitlabChoiceValue, Answer, ProviderValue } from './models/choice';
+import { Bug, CITemplate, FeatureProposal, MergeRequestTemplate } from './options/gitlab';
+import { providerQuestion, githubFileQuestion, gitlabFileQuestion } from './questions';
 
 @injectable()
 export class CGX {
@@ -21,20 +16,23 @@ export class CGX {
                 @inject('BugReport') private bugReport: BugReport,
                 @inject('FeatureRequest') private featureRequest: FeatureRequest,
                 @inject('PullRequestTemplate') private pullRequestTemplate: PullRequestTemplate,
-                @inject('MergeRequestTemplate') private mergeRequestTemplate: MergeRequestTemplate) {
+                @inject('MergeRequestTemplate') private mergeRequestTemplate: MergeRequestTemplate,
+                @inject('Bug') private bug: Bug,
+                @inject('FeatureProposal') private featureProposal: FeatureProposal,
+                @inject('CITemplate') private ciTemplate: CITemplate) {
         this.logger.showBanner();
         this.executeCGX();
     }
 
     public async executeCGX(): Promise<any> {
-        let providerAnswer: Answer = await this.providerQuestion();
+        let providerAnswer: Answer = await providerQuestion();
 
         if (providerAnswer.provider === ProviderValue.GITHUB) {
-            let githubFileAnswer: Answer = await this.githubFileQuestion();
+            let githubFileAnswer: Answer = await githubFileQuestion();
 
             switch(githubFileAnswer.files) {
-                case ChoiceValue.ALL: {
-                    this.logger.showInfo('Start generating all recommended files...');
+                case UniversalChoiceValue.ALL: {
+                    this.logger.showInfo('Start generating all recommended Github files...');
     
                     this.codeOfConduct.generateFile();
                     this.contributing.generateFile();
@@ -42,79 +40,57 @@ export class CGX {
                     this.featureRequest.generateFile();
                     return this.pullRequestTemplate.generateFile();
                 }
-                case ChoiceValue.LICENSE: {
+                case UniversalChoiceValue.LICENSE: {
                     return this.license.generateLicense();
                 }
-                case ChoiceValue.CODE_OF_CONDUCT: {
-                    return this.codeOfConduct.generateFile();
-                }
-                case ChoiceValue.CONTRIBUTING: {
+                case UniversalChoiceValue.CONTRIBUTING: {
                     return this.contributing.generateFile();
                 }
-                case ChoiceValue.BUG_REPORT: {
+                case GithubChoiceValue.CODE_OF_CONDUCT: {
+                    return this.codeOfConduct.generateFile();
+                }
+                case GithubChoiceValue.BUG_REPORT: {
                     return this.bugReport.generateFile();
                 }
-                case ChoiceValue.FEATURE_REQUEST: {
+                case GithubChoiceValue.FEATURE_REQUEST: {
                     return this.featureRequest.generateFile();
                 }
-                case ChoiceValue.PULL_REQUEST_TEMPLATE: {
+                case GithubChoiceValue.PULL_REQUEST_TEMPLATE: {
                     return this.pullRequestTemplate.generateFile();
                 }
             }
         } else if (providerAnswer.provider === ProviderValue.GITLAB)  {
-            let gitlabFileAnswer: Answer = await this.gitlabFileQuestion();
+            let gitlabFileAnswer: Answer = await gitlabFileQuestion();
 
             switch(gitlabFileAnswer.files) {
-                case ChoiceValue.MERGE_REQUEST_TEMPLATE: {
+                case UniversalChoiceValue.ALL: {
+                    this.logger.showInfo('Start generating all recommended Gitlab files...');
+    
+                    this.contributing.generateFile();
+                    this.ciTemplate.generateFile();
+                    this.bug.generateFile();
+                    this.featureProposal.generateFile();
+                    return this.mergeRequestTemplate.generateFile();
+                }
+                case UniversalChoiceValue.LICENSE: {
+                    return this.license.generateLicense();
+                }
+                case UniversalChoiceValue.CONTRIBUTING: {
+                    return this.contributing.generateFile();
+                }
+                case GitlabChoiceValue.CI_TEMPLATE: {
+                    return this.ciTemplate.generateFile();
+                }
+                case GitlabChoiceValue.BUG: {
+                    return this.bug.generateFile();
+                }
+                case GitlabChoiceValue.FEATURE_PROPOSAL: {
+                    return this.featureProposal.generateFile();
+                }
+                case GitlabChoiceValue.MERGE_REQUEST_TEMPLATE: {
                     return this.mergeRequestTemplate.generateFile();
                 }
             }
         }
-    }
-
-    private async providerQuestion(): Promise<Answer> {
-        const listOfFiles: Choice[] = [
-            {name: 'Github', value: ProviderValue.GITHUB},
-            {name: 'Gitlab', value: ProviderValue.GITLAB},
-        ];
-
-        return inquirer.prompt([{ 
-            name: 'provider',
-            type: 'list',
-            message: 'Select a Git hosting provider:',
-            choices: listOfFiles
-        }]);
-    }
-
-    private async githubFileQuestion(): Promise<Answer> {
-        const listOfFiles: Choice[] = [
-            {name: 'All files (without license)', value: ChoiceValue.ALL},
-            {name: 'License', value: ChoiceValue.LICENSE},
-            {name: 'Code of conduct', value: ChoiceValue.CODE_OF_CONDUCT},
-            {name: 'Contributing', value: ChoiceValue.CONTRIBUTING},
-            {name: 'Bug report (issue)', value: ChoiceValue.BUG_REPORT},
-            {name: 'Feature request (issue)', value: ChoiceValue.FEATURE_REQUEST},
-            {name: 'Pull request template', value: ChoiceValue.PULL_REQUEST_TEMPLATE},
-        ];
-
-        return inquirer.prompt([{ 
-            name: 'files',
-            type: 'list',
-            message: 'Which files do you want to generate?',
-            choices: listOfFiles
-        }]);
-    }
-
-    private async gitlabFileQuestion(): Promise<Answer> {
-        const listOfFiles: Choice[] = [
-            {name: 'Merge request template', value: ChoiceValue.MERGE_REQUEST_TEMPLATE},
-        ];
-
-        return inquirer.prompt([{ 
-            name: 'files',
-            type: 'list',
-            message: 'Which files do you want to generate?',
-            choices: listOfFiles
-        }]);
     }
 }
