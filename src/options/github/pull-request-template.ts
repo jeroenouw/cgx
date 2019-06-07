@@ -1,12 +1,12 @@
 import { injectable, inject } from 'inversify';
-import { GenerateFile, DefaultTemplate } from './default/default.template';
-import { Path } from '../models/path';
+import { GenerateFile, DefaultTemplate } from '../default/default.template';
+import { GithubPath } from '../../models/path';
 
 @injectable()
 export class PullRequestTemplate implements GenerateFile {
     private fileName = 'pull_request_template.md';
     private hasPath = true;
-    private pathOfFile = Path.PULL_REQUEST_TEMPLATE;
+    private pathOfFile = GithubPath.PULL_REQUEST_TEMPLATE;
 
     constructor(@inject('DefaultTemplate') private defaultTemplate: DefaultTemplate) {}
 

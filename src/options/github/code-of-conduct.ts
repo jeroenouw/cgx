@@ -1,5 +1,5 @@
 import { injectable, inject } from 'inversify';
-import { GenerateFile, DefaultTemplate } from './default/default.template';
+import { GenerateFile, DefaultTemplate } from '../default/default.template';
 
 @injectable()
 export class CodeOfConduct implements GenerateFile {
