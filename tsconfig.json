@@ -3,14 +3,23 @@
     "target": "es5",           
     "module": "commonjs",                 
     "lib": ["es6", "es2015", "dom"], 
-    "declaration": true,     
+    "declaration": false,     
     "experimentalDecorators": true,
     "outDir": "lib",         
     "rootDir": "src",       
     "strict": true,        
-    "types": ["node"],
+    "types": [
+      "node",
+      "inquirer"
+    ],
     "esModuleInterop": true,   
     "resolveJsonModule": true,
+    "importHelpers": true
   },
-  "exclude": ["node_modules", "lib", "tests", "templates"]
+  "exclude": [
+    "node_modules", 
+    "lib", 
+    "tests", 
+    "templates"
+  ]
 }

@@ -10,7 +10,7 @@ export async function githubFileQuestion(): Promise<Answer> {
         {name: 'Code of conduct', value: GithubChoiceValue.CODE_OF_CONDUCT},
         {name: 'Bug report (issue)', value: GithubChoiceValue.BUG_REPORT},
         {name: 'Feature request (issue)', value: GithubChoiceValue.FEATURE_REQUEST},
-        {name: 'Pull request template', value: GithubChoiceValue.PULL_REQUEST_TEMPLATE},
+        {name: 'Pull request', value: GithubChoiceValue.PULL_REQUEST},
     ];
 
     return inquirer.prompt([{ 

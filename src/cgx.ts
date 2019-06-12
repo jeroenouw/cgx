@@ -1,9 +1,9 @@
 import { injectable, inject } from 'inversify';
-import { Logger } from './utils/logger';
-import { Contributing, License } from './options/universal';
-import { CodeOfConduct, BugReport, FeatureRequest, PullRequestTemplate } from './options/github';
+import { Logger } from './utils/logger.util';
+import { Contributing, License } from './templates/universal';
+import { CodeOfConduct, BugReport, FeatureRequest, PullRequest } from './templates/github';
 import { UniversalChoiceValue, GithubChoiceValue, GitlabChoiceValue, Answer, ProviderValue } from './models/choice';
-import { Bug, CITemplate, FeatureProposal, MergeRequestTemplate } from './options/gitlab';
+import { Bug, CITemplate, FeatureProposal, MergeRequest } from './templates/gitlab';
 import { providerQuestion, githubFileQuestion, gitlabFileQuestion } from './questions';
 
 @injectable()
@@ -15,12 +15,12 @@ export class CGX {
                 @inject('Contributing') private contributing: Contributing,
                 @inject('BugReport') private bugReport: BugReport,
                 @inject('FeatureRequest') private featureRequest: FeatureRequest,
-                @inject('PullRequestTemplate') private pullRequestTemplate: PullRequestTemplate,
-                @inject('MergeRequestTemplate') private mergeRequestTemplate: MergeRequestTemplate,
+                @inject('PullRequest') private pullRequest: PullRequest,
+                @inject('MergeRequest') private mergeRequest: MergeRequest,
                 @inject('Bug') private bug: Bug,
                 @inject('FeatureProposal') private featureProposal: FeatureProposal,
                 @inject('CITemplate') private ciTemplate: CITemplate) {
-        this.logger.showBanner();
+        this.logger.showTitleAndBanner();
         this.executeCGX();
     }
 
@@ -38,7 +38,7 @@ export class CGX {
                     this.contributing.generateFile();
                     this.bugReport.generateFile();
                     this.featureRequest.generateFile();
-                    return this.pullRequestTemplate.generateFile();
+                    return this.pullRequest.generateFile();
                 }
                 case UniversalChoiceValue.LICENSE: {
                     return this.license.generateLicense();
@@ -55,8 +55,8 @@ export class CGX {
                 case GithubChoiceValue.FEATURE_REQUEST: {
                     return this.featureRequest.generateFile();
                 }
-                case GithubChoiceValue.PULL_REQUEST_TEMPLATE: {
-                    return this.pullRequestTemplate.generateFile();
+                case GithubChoiceValue.PULL_REQUEST: {
+                    return this.pullRequest.generateFile();
                 }
             }
         } else if (providerAnswer.provider === ProviderValue.GITLAB)  {
@@ -70,7 +70,7 @@ export class CGX {
                     this.ciTemplate.generateFile();
                     this.bug.generateFile();
                     this.featureProposal.generateFile();
-                    return this.mergeRequestTemplate.generateFile();
+                    return this.mergeRequest.generateFile();
                 }
                 case UniversalChoiceValue.LICENSE: {
                     return this.license.generateLicense();
@@ -78,7 +78,7 @@ export class CGX {
                 case UniversalChoiceValue.CONTRIBUTING: {
                     return this.contributing.generateFile();
                 }
-                case GitlabChoiceValue.CI_TEMPLATE: {
+                case GitlabChoiceValue.CI: {
                     return this.ciTemplate.generateFile();
                 }
                 case GitlabChoiceValue.BUG: {
@@ -87,8 +87,8 @@ export class CGX {
                 case GitlabChoiceValue.FEATURE_PROPOSAL: {
                     return this.featureProposal.generateFile();
                 }
-                case GitlabChoiceValue.MERGE_REQUEST_TEMPLATE: {
-                    return this.mergeRequestTemplate.generateFile();
+                case GitlabChoiceValue.MERGE_REQUEST: {
+                    return this.mergeRequest.generateFile();
                 }
             }
         }

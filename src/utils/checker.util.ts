@@ -1,7 +1,7 @@
 import fs from 'fs';
 
 import { injectable, inject } from 'inversify';
-import { Logger } from './logger';
+import { Logger } from './logger.util';
 
 @injectable()
 export class Checker {

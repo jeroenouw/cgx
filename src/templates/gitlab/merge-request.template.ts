@@ -3,7 +3,7 @@ import { GenerateFile, DefaultTemplate } from '../default/default.template';
 import { GitlabPath } from '../../models/path';
 
 @injectable()
-export class MergeRequestTemplate implements GenerateFile {
+export class MergeRequest implements GenerateFile {
     private fileName = 'merge_request_template.md';
     private hasPath = true;
     private pathOfFile = GitlabPath.MERGE_REQUEST_TEMPLATE;

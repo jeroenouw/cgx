@@ -1,8 +1,8 @@
 import fs from 'fs-extra';
 
 import { injectable, inject } from 'inversify';
-import { Logger } from '../../utils/logger';
-import { Checker } from '../../utils/checker';
+import { Logger } from '../../utils/logger.util';
+import { Checker } from '../../utils/checker.util';
 import { Answer, LicenseValue } from '../../models/choice';
 import { userNameQuestion, licenseQuestion } from '../../questions';
 

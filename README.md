@@ -1,10 +1,10 @@
-# CGX - CLI to Generate recommended Community files
+# CGX - CLI to Generate recommended documentation/files to improve contribution
 
 [![npmversion](https://img.shields.io/npm/v/cgx.svg)](https://github.com/jeroenouw/cgx)
 [![npmlicense](https://img.shields.io/npm/l/cgx.svg)](https://github.com/jeroenouw/cgx/blob/master/LICENSE/)
 [![downloads](https://img.shields.io/npm/dy/cgx.svg)](https://github.com/jeroenouw/cgx)
 
-Do you want people to contribute to your project? Make it easy for your contributors. Generate all the recommended files (pre-filled) for the Github and Gitlab community standards.  
+Do you want people to contribute to your project? Make it easy for your contributors. Generate all the recommended documentation/files (pre-filled) for the Github and Gitlab community standards.  
 
 ## Useful for every project
 * Existing or new

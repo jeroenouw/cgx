@@ -3,7 +3,7 @@ import { GenerateFile, DefaultTemplate } from '../default/default.template';
 import { GithubPath } from '../../models/path';
 
 @injectable()
-export class PullRequestTemplate implements GenerateFile {
+export class PullRequest implements GenerateFile {
     private fileName = 'pull_request_template.md';
     private hasPath = true;
     private pathOfFile = GithubPath.PULL_REQUEST_TEMPLATE;
