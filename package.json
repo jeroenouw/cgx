@@ -1,6 +1,6 @@
 {
   "name": "cgx",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Generate all the recommended documentation/files (pre-filled) for the Github and Gitlab community standards",
   "author": "Jeroen Ouwehand",
   "repository": "https://github.com/jeroenouw/cgx",
