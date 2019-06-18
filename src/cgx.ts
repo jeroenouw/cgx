@@ -1,7 +1,7 @@
 import { injectable, inject } from 'inversify';
 import { Logger } from './utils/logger.util';
-import { Contributing, License } from './templates/universal';
-import { CodeOfConduct, BugReport, FeatureRequest, PullRequest } from './templates/github';
+import { CodeOfConduct, Contributing, License } from './templates/universal';
+import { BugReport, FeatureRequest, PullRequest } from './templates/github';
 import { UniversalChoiceValue, GithubChoiceValue, GitlabChoiceValue, Answer, ProviderValue } from './models/choice';
 import { Bug, CITemplate, FeatureProposal, MergeRequest } from './templates/gitlab';
 import { providerQuestion, githubFileQuestion, gitlabFileQuestion } from './questions';
@@ -46,7 +46,7 @@ export class CGX {
                 case UniversalChoiceValue.CONTRIBUTING: {
                     return this.contributing.generateFile();
                 }
-                case GithubChoiceValue.CODE_OF_CONDUCT: {
+                case UniversalChoiceValue.CODE_OF_CONDUCT: {
                     return this.codeOfConduct.generateFile();
                 }
                 case GithubChoiceValue.BUG_REPORT: {
@@ -67,6 +67,7 @@ export class CGX {
                     this.logger.showInfo('Start generating all recommended Gitlab files...');
     
                     this.contributing.generateFile();
+                    this.codeOfConduct.generateFile();
                     this.ciTemplate.generateFile();
                     this.bug.generateFile();
                     this.featureProposal.generateFile();
@@ -77,6 +78,9 @@ export class CGX {
                 }
                 case UniversalChoiceValue.CONTRIBUTING: {
                     return this.contributing.generateFile();
+                }
+                case UniversalChoiceValue.CODE_OF_CONDUCT: {
+                    return this.codeOfConduct.generateFile();
                 }
                 case GitlabChoiceValue.CI: {
                     return this.ciTemplate.generateFile();

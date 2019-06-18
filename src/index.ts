@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { Container } from 'inversify';
 import { CGX } from './cgx';
 import { Logger } from './utils/logger.util';
-import { CodeOfConduct } from './templates/github/code-of-conduct.template';
+import { CodeOfConduct } from './templates/universal/code-of-conduct.template';
 import { License } from './templates/universal/license.template';
 import { Checker } from './utils/checker.util';
 import { Contributing } from './templates/universal/contributing.template';
@@ -28,9 +28,9 @@ export function index(): CGX {
   // Github & Gitlab Templates (universal)
   container.bind<License>('License').to(License).inSingletonScope();
   container.bind<Contributing>('Contributing').to(Contributing).inSingletonScope();
+  container.bind<CodeOfConduct>('CodeOfConduct').to(CodeOfConduct).inSingletonScope();
 
   // Github Templates
-  container.bind<CodeOfConduct>('CodeOfConduct').to(CodeOfConduct).inSingletonScope();
   container.bind<BugReport>('BugReport').to(BugReport).inSingletonScope();
   container.bind<FeatureRequest>('FeatureRequest').to(FeatureRequest).inSingletonScope();
   container.bind<PullRequest>('PullRequest').to(PullRequest).inSingletonScope();

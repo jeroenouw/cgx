@@ -6,21 +6,21 @@
 
 Do you want people to contribute to your project? Make it easy for your contributors. Generate all the recommended documentation/files (pre-filled) for the Github and Gitlab community standards.  
 
-## Useful for every project
-* Existing or new
-* Large or small
-* Every language
-* Github or Gitlab
 
 ## Files that can be generated
 More files in future versions.
 
 ### Github & Gitlab
-* License (MIT, ISC or Apache 2.0)
+* License 
+  - MIT
+  - ISC
+  - Apache 2.0
+  - BSD 2-Clause
+  - GPLv3
 * Contributing
+* Code of Conduct
 
 ### Github specific
-* Code of Conduct
 * Bug report (issue)
 * Feature request (issue)
 * Pull request template
@@ -32,6 +32,12 @@ More files in future versions.
 * Feature proposal (issue)
 * Merge request
 * All files at once
+
+## Useful for every project
+* Existing or new
+* Large or small
+* Every language
+* Github or Gitlab
 
 ![](community-score.png)
 
@@ -112,10 +118,11 @@ Generate license example:
  | |___  | |_| |  /  \
   \____|  \____| /_/\_\
 
-Generate all recommended files for the Github community standards
-? Select which files do you want to generate? License
-? Please confirm? Yes
-? Please fill in your Github name: jeroenouw
+Generate all recommended documentation/files for the Github and Gitlub community standards
+? Select a Git hosting provider: Github
+? Which files do you want to generate? License
 GENERATING: LICENSE...
+? Which type of license do you want to generate? MIT License
+? Please fill in your Git username: Jeroenouw
 CREATED: LICENSE in <path-to-folder>/LICENSE
 ```

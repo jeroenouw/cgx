@@ -4,9 +4,11 @@ import { Answer, LicenseValue, Choice } from '../models/choice';
 
 export async function licenseQuestion(): Promise<Answer> {
     const listOfLicenses: Choice[] = [
-        {name: 'Apache 2.0 License', value: LicenseValue.APACHE},
         {name: 'MIT License', value: LicenseValue.MIT},
         {name: 'ISC License', value: LicenseValue.ISC},
+        {name: 'Apache 2.0 License', value: LicenseValue.APACHE},
+        {name: 'BSD 2-Clause License', value: LicenseValue.BSD2},
+        {name: 'GPLv3 License', value: LicenseValue.GPL3},
     ];
 
     return inquirer.prompt([{ 
