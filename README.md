@@ -4,13 +4,13 @@
 [![npmlicense](https://img.shields.io/npm/l/cgx.svg)](https://github.com/jeroenouw/cgx/blob/master/LICENSE/)
 [![downloads](https://img.shields.io/npm/dy/cgx.svg)](https://github.com/jeroenouw/cgx)
 
-Do you want people to contribute to your project? Make it easy for your contributors. Generate all the recommended documentation/files (pre-filled) for the Github and Gitlab community standards.  
+Do you want people to contribute to your project? Make it easy for your contributors. Generate all the recommended documentation/files (pre-filled) for the Github, Gitlab and Bitbucket community standards.  
 
 
 ## Files that can be generated
-More files in future versions.
+More files & providers in future versions.
 
-### Github & Gitlab
+### Github, Gitlab and Bitbucket
 * License 
   - MIT
   - ISC
@@ -32,6 +32,9 @@ More files in future versions.
 * Feature proposal (issue)
 * Merge request
 * All files at once
+
+### Bitbucket specific
+* In future versions
 
 ## Useful for every project
 * Existing or new
@@ -67,7 +70,7 @@ This should start the CLI and ask for questions about which files you want to ad
 
 ## Example
 
-Generate all files example:
+Generate all Github files example:
 ```shell
    ____    ____  __  __
   / ___|  / ___| \ \/ /
@@ -75,20 +78,21 @@ Generate all files example:
  | |___  | |_| |  /  \
   \____|  \____| /_/\_\
 
-Generate all recommended files for the Github community standards
+Generate all recommended markdown documentation/templates for the Github, Gitlab and Bitbucket community standards
+? Select a Git hosting provider: Github
 ? Which files do you want to generate? All files (without license)
 INFO: Start generating all recommended files...
 
-GENERATING: CODE_OF_CONDUCT.md...
-GENERATING: CONTRIBUTING.md...
-GENERATING: bug_report.md...
-GENERATING: feature_request.md...
-GENERATING: pull_request_template.md...
-CREATED: bug_report.md in <path-to-folder>/.github/ISSUE_TEMPLATE/bug_report.md
-CREATED: CODE_OF_CONDUCT.md in <path-to-folder>/CODE_OF_CONDUCT.md.md
-CREATED: CONTRIBUTING.md in <path-to-folder>/CONTRIBUTING.md
-CREATED: feature_request.md in <path-to-folder>/.github/ISSUE_TEMPLATE/feature_request.md
-CREATED: pull_request_template.md in <path-to-folder>/.github/PULL_REQUEST_TEMPLATE/pull_request_template.md
+GENERATE: CODE_OF_CONDUCT.md...
+GENERATE: CONTRIBUTING.md...
+GENERATE: bug_report.md...
+GENERATE: feature_request.md...
+GENERATE: pull_request_template.md...
+CREATE: bug_report.md in <path-to-folder>/.github/ISSUE_TEMPLATE/bug_report.md
+CREATE: CODE_OF_CONDUCT.md in <path-to-folder>/CODE_OF_CONDUCT.md.md
+CREATE: CONTRIBUTING.md in <path-to-folder>/CONTRIBUTING.md
+CREATE: feature_request.md in <path-to-folder>/.github/ISSUE_TEMPLATE/feature_request.md
+CREATE: pull_request_template.md in <path-to-folder>/.github/PULL_REQUEST_TEMPLATE/pull_request_template.md
 ```
 
 Git provider question:
@@ -96,6 +100,7 @@ Git provider question:
 ? Select a Git hosting provider: (Use arrow keys)
 ❯ Github
   Gitlab
+  Bitbucket
 ```
 
 Generate file question: 
@@ -112,17 +117,19 @@ Generate file question:
 
 Generate license example:  
 ```shell  
-   ____    ____  __  __
-  / ___|  / ___| \ \/ /
- | |     | |  _   \  /
- | |___  | |_| |  /  \
-  \____|  \____| /_/\_\
-
-Generate all recommended documentation/files for the Github and Gitlub community standards
 ? Select a Git hosting provider: Github
 ? Which files do you want to generate? License
-GENERATING: LICENSE...
+GENERATE: LICENSE...
 ? Which type of license do you want to generate? MIT License
 ? Please fill in your Git username: Jeroenouw
-CREATED: LICENSE in <path-to-folder>/LICENSE
+CREATE: LICENSE in <path-to-folder>/LICENSE
+```
+
+File already exists example:
+```shell
+? Select a Git hosting provider: Bitbucket
+? Which Bitbucket files do you want to generate? Contributing
+GENERATE: CONTRIBUTING.md...
+? This file already exists. Do you want to overwrite it? Yes
+UPDATE: CONTRIBUTING.md in <path-to-folder>/CONTRIBUTING.md
 ```

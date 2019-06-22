@@ -25,7 +25,7 @@ export function index(): CGX {
   // Default Template
   container.bind<DefaultTemplate>('DefaultTemplate').to(DefaultTemplate).inSingletonScope();
 
-  // Github & Gitlab Templates (universal)
+  // Github, Gitlab and Bitbucket Templates (universal)
   container.bind<License>('License').to(License).inSingletonScope();
   container.bind<Contributing>('Contributing').to(Contributing).inSingletonScope();
   container.bind<CodeOfConduct>('CodeOfConduct').to(CodeOfConduct).inSingletonScope();
@@ -40,6 +40,9 @@ export function index(): CGX {
   container.bind<FeatureProposal>('FeatureProposal').to(FeatureProposal).inSingletonScope();
   container.bind<Bug>('Bug').to(Bug).inSingletonScope();
   container.bind<MergeRequest>('MergeRequest').to(MergeRequest).inSingletonScope();
+
+  // Bitbucket - in future versions
+  // 
 
   // CGX
   container.bind<CGX>('CGX').to(CGX).inSingletonScope();

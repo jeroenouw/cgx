@@ -18,7 +18,7 @@ export class License {
         const fileName = 'LICENSE';
         let fileContent = '';
 
-        this.logger.showStartGenerating(fileName);
+        this.logger.showGenerate(fileName);
 
         const check = this.checker.checkExistence(`/${fileName}`)
         if (!check) {
@@ -59,7 +59,7 @@ export class License {
 
     private createFile(filepath: string, fileContent: string, fileName: string): void {
         fs.writeFile(filepath, fileContent, (err) => {
-            this.logger.showCreated(fileName, filepath);
+            this.logger.showCreate(fileName, filepath);
             if (err) {throw err};
         });
     }
