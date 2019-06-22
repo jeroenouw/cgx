@@ -1,9 +1,9 @@
 export interface Answer {
     files: Object;
-    confirm: boolean;
     userName: string;
     licenses: LicenseValue;
     provider: ProviderValue;
+    overwrite: boolean;
 }
 
 export interface Choice {
@@ -45,5 +45,6 @@ export enum LicenseValue {
 
 export enum ProviderValue {
     GITHUB = 'Github',
-    GITLAB = 'Gitlab'
+    GITLAB = 'Gitlab',
+    BITBUCKET = 'Bitbucket',
 }
