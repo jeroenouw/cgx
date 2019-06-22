@@ -16,13 +16,12 @@ export class Checker {
     };
 
     public checkExistence(path: string): boolean {
-        const check = fs.existsSync(process.cwd() + path)
-        return check;
+        return fs.existsSync(process.cwd() + path);
     };
 
     public checkIfDirExist(path: string): void {
-        const folder = this.checkExistence(path)
-        if (!folder) {
+        const dir = this.checkExistence(path);
+        if (!dir) {
             fs.mkdirSync(process.cwd() + path, { recursive: true });
         }
     }

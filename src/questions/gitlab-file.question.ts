@@ -17,7 +17,7 @@ export async function gitlabFileQuestion(): Promise<Answer> {
     return inquirer.prompt([{ 
         name: 'files',
         type: 'list',
-        message: 'Which files do you want to generate?',
+        message: 'Which Gitlab files do you want to generate?',
         choices: listOfFiles
     }]);
 }

@@ -1,9 +1,10 @@
 export enum ConsoleMessage {
     TITLE = 'CGX',
-    BANNER = 'Generate all recommended documentation/files for the Github and Gitlab community standards',
+    BANNER = 'Generate all the recommended markdown documentation/templates for the Github, Gitlab and Bitbucket community standards',
     ERROR = 'ERROR: ',
     SUCCESS = 'SUCCESS: ',
     INFO = 'INFO: ',
-    GENERATING = 'GENERATING: ',
-    CREATED = 'CREATED: ',
+    GENERATE = 'GENERATE: ',
+    CREATE = 'CREATE: ',
+    UPDATE = 'UPDATE: ',
 }

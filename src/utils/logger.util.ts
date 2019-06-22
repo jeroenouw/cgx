@@ -14,7 +14,7 @@ export class Logger {
     }
       
     public showError(message: string | Error): void {
-        console.error(red(ConsoleMessage.ERROR) + message + this.newLine);
+        console.error(red(ConsoleMessage.ERROR) + message);
     }
       
     public showSuccess(message: string): void {
@@ -25,11 +25,15 @@ export class Logger {
         console.info(cyan(ConsoleMessage.INFO) + message + this.newLine);
     }
 
-    public showStartGenerating(fileName: string): void {
-        console.log(cyan(ConsoleMessage.GENERATING) + `${fileName}...`);
+    public showGenerate(fileName: string): void {
+        console.log(cyan(ConsoleMessage.GENERATE) + `${fileName}...`);
     }
       
-    public showCreated(fileName: string, filePath: string): void {
-        console.log(green(ConsoleMessage.CREATED) + `${fileName} in ${filePath}`);
+    public showCreate(fileName: string, filePath: string): void {
+        console.log(green(ConsoleMessage.CREATE) + `${fileName} in ${filePath}`);
+    }
+      
+    public showUpdate(fileName: string, filePath: string): void {
+        console.log(green(ConsoleMessage.UPDATE) + `${fileName} in ${filePath}`);
     }
 }
