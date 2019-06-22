@@ -40,7 +40,7 @@ More files & providers in future versions.
 * Existing or new
 * Large or small
 * Every language
-* Github or Gitlab
+* Github, Gitlab or Bitbucket
 
 ![](community-score.png)
 
