@@ -4,7 +4,7 @@
 [![npmlicense](https://img.shields.io/npm/l/cgx.svg)](https://github.com/jeroenouw/cgx/blob/master/LICENSE/)
 [![downloads](https://img.shields.io/npm/dy/cgx.svg)](https://github.com/jeroenouw/cgx)
 
-Do you want people to contribute to your project? Make it easy for your contributors. Generate all the recommended documentation/files (pre-filled) for the Github, Gitlab and Bitbucket community standards.  
+Do you want people to contribute to your project? Make it easy for your contributors. Generate all the recommended documentation/files (pre-filled) for the Github, Gitlab and Bitbucket community standards. This project has 100% type coverage checked by [tscov](https://github.com/jeroenouw/liftr-tscov).
 
 
 ## Files that can be generated

@@ -1,5 +1,5 @@
 import { red, green, cyan } from 'kleur';
-const figlet = require('figlet');
+import * as figlet from 'figlet';
 
 import { injectable } from 'inversify';
 import { ConsoleMessage } from '../models/console-message';
