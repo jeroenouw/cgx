@@ -6,6 +6,7 @@ export async function providerQuestion(): Promise<Answer> {
     const listOfFiles: Choice[] = [
         {name: 'Github', value: ProviderValue.GITHUB},
         {name: 'Gitlab', value: ProviderValue.GITLAB},
+        {name: 'Bitbucket', value: ProviderValue.BITBUCKET},
     ];
 
     return inquirer.prompt([{ 

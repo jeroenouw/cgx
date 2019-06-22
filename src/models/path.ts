@@ -8,3 +8,8 @@ export enum GitlabPath {
     MERGE_REQUEST_TEMPLATE = '/.gitlab/merge_request_templates',
     CI = '/.gitlab/ci',
 }
+
+export enum BitbucketPath {
+    ISSUE_TEMPLATE = '/.bitbucket/ISSUE_TEMPLATE',
+    PULL_REQUEST_TEMPLATE = '/.bitbucket/PULL_REQUEST_TEMPLATE',
+}
