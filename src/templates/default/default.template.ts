@@ -15,9 +15,9 @@ export class DefaultTemplate {
     public generateFile(nameOfFileWithExtension: string, fileContent: string, hasPath = false, pathOfFile = ''): void {
         this.logger.showGenerate(nameOfFileWithExtension);
 
-        this.checkIfDirExist(hasPath, pathOfFile);
+        this.checkIfDirExistElseMakeDir(hasPath, pathOfFile);
 
-        const fileExists = this.checker.checkExistence(`${pathOfFile}/${nameOfFileWithExtension}`)
+        let fileExists = this.checker.checkExistence(`${pathOfFile}/${nameOfFileWithExtension}`)
         if (!fileExists) {
             this.createFile(pathOfFile, nameOfFileWithExtension, fileContent);
         } else {
@@ -25,18 +25,18 @@ export class DefaultTemplate {
         }
     };
 
-    private checkIfDirExist(hasPath: boolean, pathOfFile: string): void {
+    private checkIfDirExistElseMakeDir(hasPath: boolean, pathOfFile: string): void {
         if (hasPath) {
-            this.checker.checkIfDirExist(pathOfFile);
+            this.checker.checkIfDirExistElseMakeDir(pathOfFile);
         }
     }
 
     private createFile(pathOfFile: string, fileName: string, fileContent: string, fileExists = false): void {
-        const filepath: string = process.cwd() + `${pathOfFile}/${fileName}`;
+        let filepath: string = process.cwd() + `${pathOfFile}/${fileName}`;
         fs.writeFile(filepath, fileContent, (error: Error) => {
             if (!error && fileExists === false) {
                 this.logger.showCreate(fileName, filepath);
-            } else if (fileExists === true) {
+            } else if (!error && fileExists === true) {
                 this.logger.showUpdate(fileName, filepath);
             } else {
                 this.logger.showError(error);
