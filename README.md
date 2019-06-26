@@ -23,6 +23,8 @@ More files & providers in future versions.
   - BSD 2-Clause
   - GPLv3
 * Contributing
+* Readme
+* Todo
 * Code of Conduct
 
 ### Github specific
