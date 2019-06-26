@@ -1,9 +1,10 @@
 import { injectable, inject } from 'inversify';
-import { DefaultTemplate, GenerateFile } from '../default/default.template';
+import { DefaultTemplate } from '../default/default.template';
+import { FileName } from '../../models/file';
 
 @injectable()
-export class Contributing implements GenerateFile {
-    private fileName = 'CONTRIBUTING.md';
+export class Contributing {
+    private fileName = FileName.CONTRIBUTING;
 
     constructor(@inject('DefaultTemplate') private defaultTemplate: DefaultTemplate) {}
 

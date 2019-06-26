@@ -5,6 +5,7 @@ import { Logger } from '../../utils/logger.util';
 import { Checker } from '../../utils/checker.util';
 import { Answer, LicenseValue } from '../../models/choice';
 import { userNameQuestion, licenseQuestion } from '../../questions';
+import { FileName } from '../../models/file';
 
 @injectable()
 export class License {
@@ -15,7 +16,7 @@ export class License {
 
     // Seperate generateLicense method because of option to select out of multiple licenses
     public async generateLicense(): Promise<void> {
-        const fileName = 'LICENSE';
+        const fileName = FileName.LICENSE;
         let fileContent = '';
 
         this.logger.showGenerate(fileName);

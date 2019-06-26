@@ -1,10 +1,11 @@
 import { injectable, inject } from 'inversify';
-import { GenerateFile, DefaultTemplate } from '../default/default.template';
+import { DefaultTemplate } from '../default/default.template';
 import { GitlabPath } from '../../models/path';
+import { FileName } from '../../models/file';
 
 @injectable()
-export class CITemplate implements GenerateFile {
-    private fileName = 'example-ci.yml';
+export class CITemplate {
+    private fileName = FileName.CI_TEMPLATE;
     private hasPath = true;
     private pathOfFile = GitlabPath.CI;
 

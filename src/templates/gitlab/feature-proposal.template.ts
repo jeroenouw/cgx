@@ -1,10 +1,11 @@
 import { injectable, inject } from 'inversify';
-import { GenerateFile, DefaultTemplate } from '../default/default.template';
+import { DefaultTemplate } from '../default/default.template';
 import { GitlabPath } from '../../models/path';
+import { FileName } from '../../models/file';
 
 @injectable()
-export class FeatureProposal implements GenerateFile {
-    private fileName = 'Feature proposal.md';
+export class FeatureProposal {
+    private fileName = FileName.FEATURE_PROPOSAL;
     private hasPath = true;
     private pathOfFile = GitlabPath.ISSUE_TEMPLATE;
 

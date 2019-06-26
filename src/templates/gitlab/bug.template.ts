@@ -1,10 +1,11 @@
 import { injectable, inject } from 'inversify';
-import { GenerateFile, DefaultTemplate } from '../default/default.template';
+import { DefaultTemplate } from '../default/default.template';
 import { GitlabPath } from '../../models/path';
+import { FileName } from '../../models/file';
 
 @injectable()
-export class Bug implements GenerateFile {
-    private fileName = 'Bug.md';
+export class Bug {
+    private fileName = FileName.BUG;
     private hasPath = true;
     private pathOfFile = GitlabPath.ISSUE_TEMPLATE;
 

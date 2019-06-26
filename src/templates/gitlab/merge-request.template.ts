@@ -1,10 +1,11 @@
 import { injectable, inject } from 'inversify';
-import { GenerateFile, DefaultTemplate } from '../default/default.template';
+import { DefaultTemplate } from '../default/default.template';
 import { GitlabPath } from '../../models/path';
+import { FileName } from '../../models/file';
 
 @injectable()
-export class MergeRequest implements GenerateFile {
-    private fileName = 'merge_request_template.md';
+export class MergeRequest {
+    private fileName = FileName.MERGE_REQUEST;
     private hasPath = true;
     private pathOfFile = GitlabPath.MERGE_REQUEST_TEMPLATE;
 

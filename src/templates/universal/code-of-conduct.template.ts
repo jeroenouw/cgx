@@ -1,9 +1,10 @@
 import { injectable, inject } from 'inversify';
-import { GenerateFile, DefaultTemplate } from '../default/default.template';
+import { DefaultTemplate } from '../default/default.template';
+import { FileName } from '../../models/file';
 
 @injectable()
-export class CodeOfConduct implements GenerateFile {
-    private fileName = 'CODE_OF_CONDUCT.md';
+export class CodeOfConduct {
+    private fileName = FileName.CODE_OF_CONDUCT;
 
     constructor(@inject('DefaultTemplate') private defaultTemplate: DefaultTemplate) {}
 

@@ -1,10 +1,11 @@
 import { injectable, inject } from 'inversify';
-import { GenerateFile, DefaultTemplate } from '../default/default.template';
+import { DefaultTemplate } from '../default/default.template';
 import { GithubPath } from '../../models/path';
+import { FileName } from '../../models/file';
 
 @injectable()
-export class PullRequest implements GenerateFile {
-    private fileName = 'pull_request_template.md';
+export class PullRequest {
+    private fileName = FileName.PULL_REQUEST;
     private hasPath = true;
     private pathOfFile = GithubPath.PULL_REQUEST_TEMPLATE;
 
