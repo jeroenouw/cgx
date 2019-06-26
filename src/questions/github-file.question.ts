@@ -8,6 +8,8 @@ export async function githubFileQuestion(): Promise<Answer> {
         {name: 'License', value: UniversalChoiceValue.LICENSE},
         {name: 'Contributing', value: UniversalChoiceValue.CONTRIBUTING},
         {name: 'Code of conduct', value: UniversalChoiceValue.CODE_OF_CONDUCT},
+        {name: 'Todo', value: UniversalChoiceValue.TODO},
+        {name: 'Readme', value: UniversalChoiceValue.README},
         {name: 'Bug report (issue)', value: GithubChoiceValue.BUG_REPORT},
         {name: 'Feature request (issue)', value: GithubChoiceValue.FEATURE_REQUEST},
         {name: 'Pull request', value: GithubChoiceValue.PULL_REQUEST},

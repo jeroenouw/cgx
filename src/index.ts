@@ -14,6 +14,8 @@ import { MergeRequest } from './templates/gitlab/merge-request.template';
 import { Bug } from './templates/gitlab/bug.template';
 import { CITemplate } from './templates/gitlab/ci.template';
 import { FeatureProposal } from './templates/gitlab/feature-proposal.template';
+import { ToDo } from './templates/universal/todo.template';
+import { Readme } from './templates/universal/readme.template';
 
 export function index(): CGX {
   const container: Container = new Container();
@@ -29,6 +31,8 @@ export function index(): CGX {
   container.bind<License>('License').to(License).inSingletonScope();
   container.bind<Contributing>('Contributing').to(Contributing).inSingletonScope();
   container.bind<CodeOfConduct>('CodeOfConduct').to(CodeOfConduct).inSingletonScope();
+  container.bind<ToDo>('ToDo').to(ToDo).inSingletonScope();
+  container.bind<Readme>('Readme').to(Readme).inSingletonScope();
 
   // Github Templates
   container.bind<BugReport>('BugReport').to(BugReport).inSingletonScope();

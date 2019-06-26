@@ -8,6 +8,8 @@ export async function gitlabFileQuestion(): Promise<Answer> {
         {name: 'License', value: UniversalChoiceValue.LICENSE},
         {name: 'Contributing', value: UniversalChoiceValue.CONTRIBUTING},
         {name: 'Code of conduct', value: UniversalChoiceValue.CODE_OF_CONDUCT},
+        {name: 'Todo', value: UniversalChoiceValue.TODO},
+        {name: 'Readme', value: UniversalChoiceValue.README},
         {name: 'CI template', value: GitlabChoiceValue.CI},
         {name: 'Bug (issue)', value: GitlabChoiceValue.BUG},
         {name: 'Feature proposal (issue)', value: GitlabChoiceValue.FEATURE_PROPOSAL},

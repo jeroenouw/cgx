@@ -20,6 +20,8 @@ export enum UniversalChoiceValue {
     LICENSE = 'LICENSE',
     CONTRIBUTING = 'CONTRIBUTING',
     CODE_OF_CONDUCT = 'CODE_OF_CONDUCT',
+    TODO = 'TODO',
+    README = 'README',
 }
 
 export enum GithubChoiceValue {

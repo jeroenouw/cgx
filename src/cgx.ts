@@ -1,6 +1,6 @@
 import { injectable, inject } from 'inversify';
 import { Logger } from './utils/logger.util';
-import { CodeOfConduct, Contributing, License } from './templates/universal';
+import { CodeOfConduct, Contributing, License, ToDo, Readme } from './templates/universal';
 import { BugReport, FeatureRequest, PullRequest } from './templates/github';
 import { UniversalChoiceValue, GithubChoiceValue, GitlabChoiceValue, Answer, ProviderValue } from './models/choice';
 import { Bug, CITemplate, FeatureProposal, MergeRequest } from './templates/gitlab';
@@ -19,6 +19,8 @@ export class CGX {
                 @inject('MergeRequest') private mergeRequest: MergeRequest,
                 @inject('Bug') private bug: Bug,
                 @inject('FeatureProposal') private featureProposal: FeatureProposal,
+                @inject('ToDo') private todo: ToDo,
+                @inject('Readme') private readme: Readme,
                 @inject('CITemplate') private ciTemplate: CITemplate) {
         this.logger.showTitleAndBanner();
         this.executeCGX();
@@ -44,6 +46,8 @@ export class CGX {
                 this.logger.showInfo('Start generating all the recommended Github files...');
 
                 this.codeOfConduct.generateFile();
+                this.todo.generateFile();
+                this.readme.generateFile();
                 this.contributing.generateFile();
                 this.bugReport.generateFile();
                 this.featureRequest.generateFile();
@@ -57,6 +61,12 @@ export class CGX {
             }
             case UniversalChoiceValue.CODE_OF_CONDUCT: {
                 return this.codeOfConduct.generateFile();
+            }
+            case UniversalChoiceValue.TODO: {
+                return this.todo.generateFile();
+            }
+            case UniversalChoiceValue.README: {
+                return this.readme.generateFile();
             }
             case GithubChoiceValue.BUG_REPORT: {
                 return this.bugReport.generateFile();
@@ -78,6 +88,8 @@ export class CGX {
                 this.logger.showInfo('Start generating all the recommended Gitlab files...');
 
                 this.contributing.generateFile();
+                this.todo.generateFile();
+                this.readme.generateFile();
                 this.codeOfConduct.generateFile();
                 this.ciTemplate.generateFile();
                 this.bug.generateFile();
@@ -92,6 +104,12 @@ export class CGX {
             }
             case UniversalChoiceValue.CODE_OF_CONDUCT: {
                 return this.codeOfConduct.generateFile();
+            }
+            case UniversalChoiceValue.TODO: {
+                return this.todo.generateFile();
+            }
+            case UniversalChoiceValue.README: {
+                return this.readme.generateFile();
             }
             case GitlabChoiceValue.CI: {
                 return this.ciTemplate.generateFile();
@@ -116,6 +134,8 @@ export class CGX {
                 this.logger.showInfo('Start generating all the recommended Bitbucket files...');
 
                 this.contributing.generateFile();
+                this.todo.generateFile();
+                this.readme.generateFile();
                 return this.codeOfConduct.generateFile();
             }
             case UniversalChoiceValue.LICENSE: {
@@ -126,6 +146,12 @@ export class CGX {
             }
             case UniversalChoiceValue.CODE_OF_CONDUCT: {
                 return this.codeOfConduct.generateFile();
+            }
+            case UniversalChoiceValue.TODO: {
+                return this.todo.generateFile();
+            }
+            case UniversalChoiceValue.README: {
+                return this.readme.generateFile();
             }
         }
     }
