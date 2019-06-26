@@ -59,7 +59,3 @@ export class DefaultTemplate {
         process.exit(1);
     }
 }
-
-export interface GenerateFile {
-    generateFile(nameOfFileWithExtension: string, contentOfFile: string, hasPath: boolean, pathOfFile: string): void;
-}
