@@ -30,10 +30,14 @@ export class Logger {
     }
       
     public showCreate(fileName: string, filePath: string): void {
-        console.log(green(ConsoleMessage.CREATE) + `${fileName} in ${filePath}`);
+        filePath 
+        ? console.log(green(ConsoleMessage.CREATE) + `${fileName} in ${filePath}`) 
+        : console.log(green(ConsoleMessage.CREATE) + `${fileName}`);
     }
       
     public showUpdate(fileName: string, filePath: string): void {
-        console.log(green(ConsoleMessage.UPDATE) + `${fileName} in ${filePath}`);
+        filePath 
+        ? console.log(green(ConsoleMessage.UPDATE) + `${fileName} in ${filePath}`) 
+        : console.log(green(ConsoleMessage.UPDATE) + `${fileName}`);
     }
 }

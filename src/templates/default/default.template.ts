@@ -35,9 +35,9 @@ export class DefaultTemplate {
         let filepath: string = process.cwd() + `${pathOfFile}/${fileName}`;
         fs.writeFile(filepath, fileContent, (error: Error) => {
             if (!error && fileExists === false) {
-                this.logger.showCreate(fileName, filepath);
+                this.logger.showCreate(fileName, pathOfFile);
             } else if (!error && fileExists === true) {
-                this.logger.showUpdate(fileName, filepath);
+                this.logger.showUpdate(fileName, pathOfFile);
             } else {
                 this.logger.showError(error);
             }
