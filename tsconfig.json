@@ -10,7 +10,9 @@
     "strict": true,        
     "types": [
       "node",
-      "inquirer"
+      "inquirer",
+      "figlet",
+      "fs-extra"
     ],
     "esModuleInterop": true,   
     "resolveJsonModule": true,
@@ -19,7 +21,6 @@
   "exclude": [
     "node_modules", 
     "lib", 
-    "tests", 
     "templates"
   ]
 }
