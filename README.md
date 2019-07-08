@@ -87,7 +87,7 @@ Generate all Github files example:
 
 Generate all recommended markdown documentation/templates for the Github, Gitlab and Bitbucket community standards
 ? Select a Git hosting provider: Github
-? Which files do you want to generate? All files (without license)
+? Which files do you want to generate? All main files (without license, todo and readme)
 INFO: Start generating all recommended files...
 
 GENERATE: CODE_OF_CONDUCT.md...
@@ -113,7 +113,7 @@ Git provider question:
 Generate file question: 
 ```shell  
 ? Which files do you want to generate? (Use arrow keys)
-❯ All files (without license)
+❯ All main files (without license, todo and readme)
   License
   Code of conduct
   Contributing
