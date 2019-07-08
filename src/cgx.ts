@@ -5,6 +5,7 @@ import { BugReport, FeatureRequest, PullRequest } from './templates/github';
 import { UniversalChoiceValue, GithubChoiceValue, GitlabChoiceValue, Answer, ProviderValue } from './models/choice';
 import { Bug, CITemplate, FeatureProposal, MergeRequest } from './templates/gitlab';
 import { providerQuestion, githubFileQuestion, gitlabFileQuestion, bitbucketFileQuestion } from './questions';
+import { ConsoleMessage } from './models/console-message';
 
 @injectable()
 export class CGX {
@@ -43,11 +44,9 @@ export class CGX {
 
         switch (githubFileAnswer.files) {
             case UniversalChoiceValue.ALL: {
-                this.logger.showInfo('Start generating all the recommended Github files...');
+                this.logger.showInfo(ConsoleMessage.START_GENERATING);
 
                 this.codeOfConduct.generateFile();
-                this.todo.generateFile();
-                this.readme.generateFile();
                 this.contributing.generateFile();
                 this.bugReport.generateFile();
                 this.featureRequest.generateFile();
@@ -85,11 +84,9 @@ export class CGX {
         
         switch (gitlabFileAnswer.files) {
             case UniversalChoiceValue.ALL: {
-                this.logger.showInfo('Start generating all the recommended Gitlab files...');
+                this.logger.showInfo(ConsoleMessage.START_GENERATING);
 
                 this.contributing.generateFile();
-                this.todo.generateFile();
-                this.readme.generateFile();
                 this.codeOfConduct.generateFile();
                 this.ciTemplate.generateFile();
                 this.bug.generateFile();
@@ -131,11 +128,9 @@ export class CGX {
 
         switch (bitbucketFileAnswer.files) {
             case UniversalChoiceValue.ALL: {
-                this.logger.showInfo('Start generating all the recommended Bitbucket files...');
+                this.logger.showInfo(ConsoleMessage.START_GENERATING);
 
                 this.contributing.generateFile();
-                this.todo.generateFile();
-                this.readme.generateFile();
                 return this.codeOfConduct.generateFile();
             }
             case UniversalChoiceValue.LICENSE: {
