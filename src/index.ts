@@ -16,6 +16,7 @@ import { CITemplate } from './templates/gitlab/ci.template';
 import { FeatureProposal } from './templates/gitlab/feature-proposal.template';
 import { ToDo } from './templates/universal/todo.template';
 import { Readme } from './templates/universal/readme.template';
+import { Changelog } from './templates/universal/changelog.template';
 
 export function index(): CGX {
   const container: Container = new Container();
@@ -27,12 +28,13 @@ export function index(): CGX {
   // Default Template
   container.bind<DefaultTemplate>('DefaultTemplate').to(DefaultTemplate).inSingletonScope();
 
-  // Github, Gitlab and Bitbucket Templates (universal)
+  // Universal Templates (Github, Gitlab and Bitbucket)
   container.bind<License>('License').to(License).inSingletonScope();
   container.bind<Contributing>('Contributing').to(Contributing).inSingletonScope();
   container.bind<CodeOfConduct>('CodeOfConduct').to(CodeOfConduct).inSingletonScope();
   container.bind<ToDo>('ToDo').to(ToDo).inSingletonScope();
   container.bind<Readme>('Readme').to(Readme).inSingletonScope();
+  container.bind<Changelog>('Changelog').to(Changelog).inSingletonScope();
 
   // Github Templates
   container.bind<BugReport>('BugReport').to(BugReport).inSingletonScope();

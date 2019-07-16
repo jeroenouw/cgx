@@ -22,6 +22,7 @@ More files & providers in future versions.
   - Apache 2.0
   - BSD 2-Clause
   - GPLv3
+* Changelog
 * Contributing
 * Readme
 * Todo
@@ -115,6 +116,7 @@ Generate file question:
 ? Which files do you want to generate? (Use arrow keys)
 ❯ All main files (without license, todo and readme)
   License
+  Changelog
   Code of conduct
   Contributing
   Bug report (issue)

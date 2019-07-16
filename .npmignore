@@ -13,6 +13,7 @@ tsconfig.json
 tslint.json
 community-score.png
 docs/
+demo/
 lib/**/*.spec.js
 lib/**/**.d.ts
 *.gif

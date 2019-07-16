@@ -11,4 +11,5 @@ export enum FileName {
     LICENSE = 'LICENSE',
     README = 'README.md',
     TODO = 'TODO.md',
+    CHANGELOG = 'CHANGELOG.md',
 }

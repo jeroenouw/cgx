@@ -1,6 +1,6 @@
 import { injectable, inject } from 'inversify';
 import { Logger } from './utils/logger.util';
-import { CodeOfConduct, Contributing, License, ToDo, Readme } from './templates/universal';
+import { CodeOfConduct, Contributing, License, ToDo, Readme, Changelog } from './templates/universal';
 import { BugReport, FeatureRequest, PullRequest } from './templates/github';
 import { UniversalChoiceValue, GithubChoiceValue, GitlabChoiceValue, Answer, ProviderValue } from './models/choice';
 import { Bug, CITemplate, FeatureProposal, MergeRequest } from './templates/gitlab';
@@ -22,6 +22,7 @@ export class CGX {
                 @inject('FeatureProposal') private featureProposal: FeatureProposal,
                 @inject('ToDo') private todo: ToDo,
                 @inject('Readme') private readme: Readme,
+                @inject('Changelog') private changelog: Changelog,
                 @inject('CITemplate') private ciTemplate: CITemplate) {
         this.logger.showTitleAndBanner();
         this.executeCGX();
@@ -54,6 +55,9 @@ export class CGX {
             }
             case UniversalChoiceValue.LICENSE: {
                 return this.license.generateLicense();
+            }
+            case UniversalChoiceValue.CHANGELOG: {
+                return this.changelog.generateFile();
             }
             case UniversalChoiceValue.CONTRIBUTING: {
                 return this.contributing.generateFile();
@@ -96,6 +100,9 @@ export class CGX {
             case UniversalChoiceValue.LICENSE: {
                 return this.license.generateLicense();
             }
+            case UniversalChoiceValue.CHANGELOG: {
+                return this.changelog.generateFile();
+            }
             case UniversalChoiceValue.CONTRIBUTING: {
                 return this.contributing.generateFile();
             }
@@ -135,6 +142,9 @@ export class CGX {
             }
             case UniversalChoiceValue.LICENSE: {
                 return this.license.generateLicense();
+            }
+            case UniversalChoiceValue.CHANGELOG: {
+                return this.changelog.generateFile();
             }
             case UniversalChoiceValue.CONTRIBUTING: {
                 return this.contributing.generateFile();

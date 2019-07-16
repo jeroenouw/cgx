@@ -3,3 +3,4 @@ export * from './license.template';
 export * from './code-of-conduct.template';
 export * from './todo.template';
 export * from './readme.template';
+export * from './changelog.template';

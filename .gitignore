@@ -34,3 +34,4 @@ lib/
 package-lock.json
 docs/
 .nyc_output
+demo/
