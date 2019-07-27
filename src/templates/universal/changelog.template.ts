@@ -36,14 +36,8 @@ __Author:__ ${commit.author} on ${commit.date} ${newLine} ${newLine}`;
     private gitLogToJSON(gitLog: string): CommitData[] {
         return gitLog.split('\0').map((commit: any) => {
           const commitParts = commit.split('\n');
-      
-          return {
-            hash: commitParts[0],
-            author: commitParts[2],
-            message: commitParts[3],
-            date: commitParts[4].substr(0, 16),
-            mail: commitParts[5]
-          }
+          const [hash, , author, message, date, mail] = commitParts;
+          return {hash, author, message, date, mail};
         });
     };
 }
