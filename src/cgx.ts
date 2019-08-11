@@ -1,7 +1,7 @@
 import { injectable, inject } from 'inversify';
 import { Logger } from './utils/logger.util';
 import { CodeOfConduct, Contributing, License, ToDo, Readme, Changelog } from './templates/universal';
-import { BugReport, FeatureRequest, PullRequest } from './templates/github';
+import { BugReport, FeatureRequest, PullRequest, Security } from './templates/github';
 import { UniversalChoiceValue, GithubChoiceValue, GitlabChoiceValue, Answer, ProviderValue } from './models/choice';
 import { Bug, CITemplate, FeatureProposal, MergeRequest } from './templates/gitlab';
 import { providerQuestion, githubFileQuestion, gitlabFileQuestion, bitbucketFileQuestion } from './questions';
@@ -21,6 +21,7 @@ export class CGX {
                 @inject('Bug') private bug: Bug,
                 @inject('FeatureProposal') private featureProposal: FeatureProposal,
                 @inject('ToDo') private todo: ToDo,
+                @inject('Security') private security: Security,
                 @inject('Readme') private readme: Readme,
                 @inject('Changelog') private changelog: Changelog,
                 @inject('CITemplate') private ciTemplate: CITemplate) {
@@ -70,6 +71,9 @@ export class CGX {
             }
             case UniversalChoiceValue.README: {
                 return this.readme.generateFile();
+            }
+            case GithubChoiceValue.SECURITY: {
+                return this.security.generateFile();
             }
             case GithubChoiceValue.BUG_REPORT: {
                 return this.bugReport.generateFile();

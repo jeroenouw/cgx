@@ -30,6 +30,7 @@ More files & providers in future versions.
 
 ### Github specific
 * Bug report (issue)
+* Security vulnerability report
 * Feature request (issue)
 * Pull request template
 * All files at once
@@ -96,11 +97,11 @@ GENERATE: CONTRIBUTING.md...
 GENERATE: bug_report.md...
 GENERATE: feature_request.md...
 GENERATE: pull_request_template.md...
-CREATE: bug_report.md in <path-to-folder>/.github/ISSUE_TEMPLATE/bug_report.md
-CREATE: CODE_OF_CONDUCT.md in <path-to-folder>/CODE_OF_CONDUCT.md.md
-CREATE: CONTRIBUTING.md in <path-to-folder>/CONTRIBUTING.md
-CREATE: feature_request.md in <path-to-folder>/.github/ISSUE_TEMPLATE/feature_request.md
-CREATE: pull_request_template.md in <path-to-folder>/.github/PULL_REQUEST_TEMPLATE/pull_request_template.md
+CREATE: bug_report.md in .github/ISSUE_TEMPLATE/bug_report.md
+CREATE: CODE_OF_CONDUCT.md in CODE_OF_CONDUCT.md.md
+CREATE: CONTRIBUTING.md in CONTRIBUTING.md
+CREATE: feature_request.md in .github/ISSUE_TEMPLATE/feature_request.md
+CREATE: pull_request_template.md in .github/PULL_REQUEST_TEMPLATE/pull_request_template.md
 ```
 
 Git provider question:
@@ -131,7 +132,7 @@ Generate license example:
 GENERATE: LICENSE...
 ? Which type of license do you want to generate? MIT License
 ? Please fill in your Git username: Jeroenouw
-CREATE: LICENSE in <path-to-folder>/LICENSE
+CREATE: LICENSE in LICENSE
 ```
 
 File already exists example:
@@ -140,5 +141,5 @@ File already exists example:
 ? Which Bitbucket files do you want to generate? Contributing
 GENERATE: CONTRIBUTING.md...
 ? This file already exists. Do you want to overwrite it? Yes
-UPDATE: CONTRIBUTING.md in <path-to-folder>/CONTRIBUTING.md
+UPDATE: CONTRIBUTING.md in CONTRIBUTING.md
 ```

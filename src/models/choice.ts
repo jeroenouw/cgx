@@ -29,6 +29,7 @@ export enum GithubChoiceValue {
     BUG_REPORT = 'BUG_REPORT',
     FEATURE_REQUEST = 'FEATURE_REQUEST',
     PULL_REQUEST = 'PULL_REQUEST',
+    SECURITY = 'SECURITY',
 }
 
 export enum GitlabChoiceValue {

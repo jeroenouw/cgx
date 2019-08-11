@@ -4,7 +4,7 @@ import { Answer, UniversalChoiceValue, GitlabChoiceValue, Choice } from '../mode
 
 export async function gitlabFileQuestion(): Promise<Answer> {
     const listOfFiles: Choice[] = [
-        {name: 'All main files (without license, changelog, todo and readme)', value: UniversalChoiceValue.ALL},
+        {name: 'All recommended files (other files can be generated separate)', value: UniversalChoiceValue.ALL},
         {name: 'License', value: UniversalChoiceValue.LICENSE},
         {name: 'Changelog', value: UniversalChoiceValue.CHANGELOG},
         {name: 'Contributing', value: UniversalChoiceValue.CONTRIBUTING},

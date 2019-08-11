@@ -2,21 +2,11 @@ import 'reflect-metadata';
 import { Container } from 'inversify';
 import { CGX } from './cgx';
 import { Logger } from './utils/logger.util';
-import { CodeOfConduct } from './templates/universal/code-of-conduct.template';
-import { License } from './templates/universal/license.template';
 import { Checker } from './utils/checker.util';
-import { Contributing } from './templates/universal/contributing.template';
-import { BugReport } from './templates/github/bug-report.template';
-import { FeatureRequest } from './templates/github/feature-request.template';
-import { PullRequest } from './templates/github/pull-request.template';
 import { DefaultTemplate } from './templates/default/default.template';
-import { MergeRequest } from './templates/gitlab/merge-request.template';
-import { Bug } from './templates/gitlab/bug.template';
-import { CITemplate } from './templates/gitlab/ci.template';
-import { FeatureProposal } from './templates/gitlab/feature-proposal.template';
-import { ToDo } from './templates/universal/todo.template';
-import { Readme } from './templates/universal/readme.template';
-import { Changelog } from './templates/universal/changelog.template';
+import { CodeOfConduct, Contributing, License, ToDo, Readme, Changelog } from './templates/universal';
+import { BugReport, FeatureRequest, PullRequest, Security } from './templates/github';
+import { Bug, CITemplate, FeatureProposal, MergeRequest } from './templates/gitlab';
 
 export function index(): CGX {
   const container: Container = new Container();
@@ -40,6 +30,7 @@ export function index(): CGX {
   container.bind<BugReport>('BugReport').to(BugReport).inSingletonScope();
   container.bind<FeatureRequest>('FeatureRequest').to(FeatureRequest).inSingletonScope();
   container.bind<PullRequest>('PullRequest').to(PullRequest).inSingletonScope();
+  container.bind<Security>('Security').to(Security).inSingletonScope();
 
   // Gitlab Templates
   container.bind<CITemplate>('CITemplate').to(CITemplate).inSingletonScope();

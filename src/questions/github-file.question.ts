@@ -4,7 +4,7 @@ import { Answer, UniversalChoiceValue, GithubChoiceValue, Choice } from '../mode
 
 export async function githubFileQuestion(): Promise<Answer> {
     const listOfFiles: Choice[] = [
-        {name: 'All main files (without license, changelog, todo and readme)', value: UniversalChoiceValue.ALL},
+        {name: 'All recommended files (other files can be generated separate)', value: UniversalChoiceValue.ALL},
         {name: 'License', value: UniversalChoiceValue.LICENSE},
         {name: 'Changelog', value: UniversalChoiceValue.CHANGELOG},
         {name: 'Contributing', value: UniversalChoiceValue.CONTRIBUTING},
@@ -12,6 +12,7 @@ export async function githubFileQuestion(): Promise<Answer> {
         {name: 'Todo', value: UniversalChoiceValue.TODO},
         {name: 'Readme', value: UniversalChoiceValue.README},
         {name: 'Bug report (issue)', value: GithubChoiceValue.BUG_REPORT},
+        {name: 'Security vulnerability report', value: GithubChoiceValue.SECURITY},
         {name: 'Feature request (issue)', value: GithubChoiceValue.FEATURE_REQUEST},
         {name: 'Pull request', value: GithubChoiceValue.PULL_REQUEST},
     ];
