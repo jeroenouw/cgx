@@ -1,6 +1,6 @@
 {
   "name": "cgx",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "description": "Generate all the recommended markdown documentation/templates (pre-filled) for the Github, Gitlab and Bitbucket community standards",
   "author": "Jeroen Ouwehand",
   "repository": "https://github.com/jeroenouw/cgx",
