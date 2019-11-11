@@ -132,7 +132,7 @@ Generate license example:
 GENERATE: LICENSE...
 ? Which type of license do you want to generate? MIT License
 ? Please fill in your Git username: Jeroenouw
-CREATE: LICENSE in LICENSE
+CREATE: LICENSE
 ```
 
 File already exists example:
@@ -141,5 +141,5 @@ File already exists example:
 ? Which Bitbucket files do you want to generate? Contributing
 GENERATE: CONTRIBUTING.md...
 ? This file already exists. Do you want to overwrite it? Yes
-UPDATE: CONTRIBUTING.md in CONTRIBUTING.md
+UPDATE: CONTRIBUTING.md
 ```
