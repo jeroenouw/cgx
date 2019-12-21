@@ -7,6 +7,9 @@ import { DefaultTemplate } from './templates/default/default.template';
 import { CodeOfConduct, Contributing, License, ToDo, Readme, Changelog } from './templates/universal';
 import { BugReport, FeatureRequest, PullRequest, Security } from './templates/github';
 import { Bug, CITemplate, FeatureProposal, MergeRequest } from './templates/gitlab';
+import { BitbucketActions } from './actions/bitbucket.actions';
+import { GitlabActions } from './actions/gitlab.actions';
+import { GithubActions } from './actions/github.actions';
 
 export function index(): CGX {
   const container: Container = new Container();
@@ -14,6 +17,11 @@ export function index(): CGX {
   // Utils
   container.bind<Logger>('Logger').to(Logger).inSingletonScope();
   container.bind<Checker>('Checker').to(Checker).inSingletonScope();
+
+  // Actions
+  container.bind<BitbucketActions>('BitbucketActions').to(BitbucketActions).inSingletonScope();
+  container.bind<GitlabActions>('GitlabActions').to(GitlabActions).inSingletonScope();
+  container.bind<GithubActions>('GithubActions').to(GithubActions).inSingletonScope();
 
   // Default Template
   container.bind<DefaultTemplate>('DefaultTemplate').to(DefaultTemplate).inSingletonScope();
