@@ -1,6 +1,6 @@
 {
   "name": "cgx",
-  "version": "1.9.2",
+  "version": "1.9.3",
   "description": "Generate all the recommended markdown documentation/templates (pre-filled) for the Github, Gitlab and Bitbucket community standards",
   "author": "Jeroen Ouwehand",
   "repository": "https://github.com/jeroenouw/cgx",
@@ -34,23 +34,23 @@
     "docs": "typedoc --out docs ./src"
   },
   "dependencies": {
-    "@types/fs-extra": "^8.0.0",
+    "@types/fs-extra": "^8.0.1",
     "figlet": "^1.2.4",
     "fs-extra": "^8.1.0",
-    "inquirer": "^7.0.0",
+    "inquirer": "^7.0.1",
     "inversify": "^5.0.1",
     "kleur": "^3.0.3",
     "reflect-metadata": "^0.1.13",
     "tslib": "^1.10.0"
   },
   "devDependencies": {
-    "@liftr/tscov": "^1.4.3",
+    "@liftr/tscov": "^1.4.4",
     "@types/figlet": "^1.2.0",
     "@types/inquirer": "^6.5.0",
-    "@types/node": "^12.12.7",
-    "ts-node": "^8.5.0",
+    "@types/node": "^12.12.21",
+    "ts-node": "^8.5.4",
     "tslint": "^5.20.1",
-    "typedoc": "^0.15.0",
-    "typescript": "^3.7.2"
+    "typedoc": "^0.15.5",
+    "typescript": "^3.7.4"
   }
 }
