@@ -31,7 +31,6 @@ service-worker.js
 lib/
 
 # Other
-package-lock.json
 docs/
 .nyc_output
 demo/

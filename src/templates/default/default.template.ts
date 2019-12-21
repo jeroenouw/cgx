@@ -12,16 +12,16 @@ export class DefaultTemplate {
     constructor(@inject('Logger') private logger: Logger,
                 @inject('Checker') private checker: Checker) {}
 
-    public generateFile(fileNameWithExtension: string, fileContent: string, hasPath = false, filePath = ''): void {
-        this.logger.showGenerate(fileNameWithExtension);
+    public generateFile(fileNameWithExt: string, fileContent: string, hasPath = false, filePath = ''): void {
+        this.logger.showGenerate(fileNameWithExt);
 
         this.checkIfDirExistElseMakeDir(hasPath, filePath);
 
-        let fileExists = this.checker.checkExistence(`${filePath}/${fileNameWithExtension}`)
+        let fileExists = this.checker.checkExistence(`${filePath}/${fileNameWithExt}`)
         if (!fileExists) {
-            this.createFile(filePath, fileNameWithExtension, fileContent);
+            this.createFile(filePath, fileNameWithExt, fileContent);
         } else {
-            this.overwriteFileOrThrowError(filePath, fileNameWithExtension, fileContent);
+            this.overwriteFileOrThrowError(filePath, fileNameWithExt, fileContent);
         }
     };
 
@@ -31,12 +31,12 @@ export class DefaultTemplate {
         }
     }
 
-    private createFile(filePath: string, fileName: string, fileContent: string, fileExists = false): void {
+    private createFile(filePath: string, fileName: string, fileContent: string, fileAlreadyExists = false): void {
         let filepath: string = process.cwd() + `${filePath}/${fileName}`;
         fs.writeFile(filepath, fileContent, (error: Error) => {
-            if (!error && fileExists === false) {
+            if (!error && fileAlreadyExists === false) {
                 this.logger.showCreate(fileName, filePath);
-            } else if (!error && fileExists === true) {
+            } else if (!error && fileAlreadyExists === true) {
                 this.logger.showUpdate(fileName, filePath);
             } else {
                 this.logger.showError(error);
@@ -44,13 +44,13 @@ export class DefaultTemplate {
         });
     }
 
-    private async overwriteFileOrThrowError(filePath: string, fileNameWithExtension: string, fileContent: string) {
+    private async overwriteFileOrThrowError(filePath: string, fileNameWithExt: string, fileContent: string) {
         let overwriteAnswer: Answer = await overwriteFileQuestion();
 
         if (overwriteAnswer.overwrite === true) {
-            this.createFile(filePath, fileNameWithExtension, fileContent, true);
+            this.createFile(filePath, fileNameWithExt, fileContent, true);
         } else {
-            this.fileAlreadyExist(fileNameWithExtension);
+            this.fileAlreadyExist(fileNameWithExt);
         }
     }
 
