@@ -5,16 +5,16 @@ import { Answer, UniversalChoiceValue, GithubChoiceValue, Choice } from '../mode
 export async function githubFileQuestion(): Promise<Answer> {
     const listOfFiles: Choice[] = [
         {name: 'All recommended files (other files can be generated separate)', value: UniversalChoiceValue.ALL},
+        {name: 'Bug report (issue)', value: GithubChoiceValue.BUG_REPORT},
+        {name: 'Security vulnerability report', value: GithubChoiceValue.SECURITY},
+        {name: 'Feature request (issue)', value: GithubChoiceValue.FEATURE_REQUEST},
+        {name: 'Pull request', value: GithubChoiceValue.PULL_REQUEST},
         {name: 'License', value: UniversalChoiceValue.LICENSE},
         {name: 'Changelog', value: UniversalChoiceValue.CHANGELOG},
         {name: 'Contributing', value: UniversalChoiceValue.CONTRIBUTING},
         {name: 'Code of conduct', value: UniversalChoiceValue.CODE_OF_CONDUCT},
         {name: 'Todo', value: UniversalChoiceValue.TODO},
         {name: 'Readme', value: UniversalChoiceValue.README},
-        {name: 'Bug report (issue)', value: GithubChoiceValue.BUG_REPORT},
-        {name: 'Security vulnerability report', value: GithubChoiceValue.SECURITY},
-        {name: 'Feature request (issue)', value: GithubChoiceValue.FEATURE_REQUEST},
-        {name: 'Pull request', value: GithubChoiceValue.PULL_REQUEST},
     ];
 
     return inquirer.prompt([{ 

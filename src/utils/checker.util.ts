@@ -1,13 +1,9 @@
 import fs from 'fs';
 
-import { injectable, inject } from 'inversify';
-import { Logger } from './logger.util';
+import { injectable } from 'inversify';
 
 @injectable()
 export class Checker {
-
-    constructor(@inject('Logger') private logger: Logger) {}
-
     public checkExistence(path: string): boolean {
         return fs.existsSync(process.cwd() + path);
     };
