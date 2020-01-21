@@ -1,7 +1,7 @@
 {
   "name": "cgx",
-  "version": "1.9.3",
-  "description": "Generate all the recommended markdown documentation/templates (pre-filled) for the Github, Gitlab and Bitbucket community standards",
+  "version": "1.10.0",
+  "description": "Generate all the recommended markdown documentation/templates (pre-filled) for the Github and Gitlab community standards. Files for CodeCommit (AWS) or Bitbucket can be generated too",
   "author": "Jeroen Ouwehand",
   "repository": "https://github.com/jeroenouw/cgx",
   "license": "MIT",
@@ -37,7 +37,7 @@
     "@types/fs-extra": "^8.0.1",
     "figlet": "^1.2.4",
     "fs-extra": "^8.1.0",
-    "inquirer": "^7.0.1",
+    "inquirer": "^7.0.3",
     "inversify": "^5.0.1",
     "kleur": "^3.0.3",
     "reflect-metadata": "^0.1.13",
@@ -47,10 +47,10 @@
     "@liftr/tscov": "^1.4.4",
     "@types/figlet": "^1.2.0",
     "@types/inquirer": "^6.5.0",
-    "@types/node": "^12.12.21",
-    "ts-node": "^8.5.4",
+    "@types/node": "^13.1.8",
+    "ts-node": "^8.6.2",
     "tslint": "^5.20.1",
-    "typedoc": "^0.15.5",
-    "typescript": "^3.7.4"
+    "typedoc": "^0.16.8",
+    "typescript": "^3.7.5"
   }
 }
