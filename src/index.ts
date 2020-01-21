@@ -10,6 +10,8 @@ import { Bug, CITemplate, FeatureProposal, MergeRequest } from './templates/gitl
 import { BitbucketActions } from './actions/bitbucket.actions';
 import { GitlabActions } from './actions/gitlab.actions';
 import { GithubActions } from './actions/github.actions';
+import { CodecommitActions } from './actions/codecommit.actions';
+import { Appspec, Buildspec } from './templates/codecommit';
 
 export function index(): CGX {
   const container: Container = new Container();
@@ -22,11 +24,12 @@ export function index(): CGX {
   container.bind<BitbucketActions>('BitbucketActions').to(BitbucketActions).inSingletonScope();
   container.bind<GitlabActions>('GitlabActions').to(GitlabActions).inSingletonScope();
   container.bind<GithubActions>('GithubActions').to(GithubActions).inSingletonScope();
+  container.bind<CodecommitActions>('CodecommitActions').to(CodecommitActions).inSingletonScope();
 
   // Default Template
   container.bind<DefaultTemplate>('DefaultTemplate').to(DefaultTemplate).inSingletonScope();
 
-  // Universal Templates (Github, Gitlab and Bitbucket)
+  // Universal Templates (Github, Gitlab, CodeCommit and Bitbucket)
   container.bind<License>('License').to(License).inSingletonScope();
   container.bind<Contributing>('Contributing').to(Contributing).inSingletonScope();
   container.bind<CodeOfConduct>('CodeOfConduct').to(CodeOfConduct).inSingletonScope();
@@ -45,6 +48,10 @@ export function index(): CGX {
   container.bind<FeatureProposal>('FeatureProposal').to(FeatureProposal).inSingletonScope();
   container.bind<Bug>('Bug').to(Bug).inSingletonScope();
   container.bind<MergeRequest>('MergeRequest').to(MergeRequest).inSingletonScope();
+
+  // CodeCommit Templates
+  container.bind<Appspec>('Appspec').to(Appspec).inSingletonScope();
+  container.bind<Buildspec>('Buildspec').to(Buildspec).inSingletonScope();
 
   // Bitbucket - in future versions
   // 

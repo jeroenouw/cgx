@@ -13,4 +13,6 @@ export enum FileName {
     TODO = 'TODO.md',
     CHANGELOG = 'CHANGELOG.md',
     SECURITY = 'SECURITY.md',
+    APPSPEC = 'appspec.yml',
+    BUILDSPEC = 'buildspec.yml',
 }

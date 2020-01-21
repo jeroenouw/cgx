@@ -11,6 +11,7 @@ export interface Choice {
     value: UniversalChoiceValue | 
            GithubChoiceValue | 
            GitlabChoiceValue | 
+           CodecommitChoiceValue | 
            LicenseValue | 
            ProviderValue;
 }
@@ -39,6 +40,11 @@ export enum GitlabChoiceValue {
     MERGE_REQUEST = 'MERGE_REQUEST',
 }
 
+export enum CodecommitChoiceValue {
+    APPSPEC = 'APPSPEC',
+    BUILDSPEC = 'BUILDSPEC',
+}
+
 export enum LicenseValue {
     MIT = 'MIT',
     APACHE = 'APACHE',
@@ -50,5 +56,6 @@ export enum LicenseValue {
 export enum ProviderValue {
     GITHUB = 'Github',
     GITLAB = 'Gitlab',
+    CODECOMMIT = 'CodeCommit',
     BITBUCKET = 'Bitbucket',
 }

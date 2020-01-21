@@ -4,7 +4,7 @@
 [![npmlicense](https://img.shields.io/npm/l/cgx.svg)](https://github.com/jeroenouw/cgx/blob/master/LICENSE/)
 [![downloads](https://img.shields.io/npm/dy/cgx.svg)](https://github.com/jeroenouw/cgx)
 
-Do you want people to contribute to your project? Make it easy for your contributors. Generate all the recommended documentation/files (pre-filled) for the Github, Gitlab and Bitbucket community standards. This project has 100% type coverage checked by [tscov](https://github.com/jeroenouw/liftr-tscov).
+Do you want people to contribute to your project? Make it easy for your contributors. Generate all the recommended documentation/files (pre-filled) for the Github and Gitlab community standards. Files for CodeCommit (AWS) or Bitbucket can be generated too. This project has 99+% type coverage checked by [tscov](https://github.com/jeroenouw/liftr-tscov).
 
 > Generate multiple files at once
 <p align="center"><img src="/cgx-demo.gif?raw=true"/></p>
@@ -15,7 +15,7 @@ Do you want people to contribute to your project? Make it easy for your contribu
 ## Files that can be generated
 More files & providers in future versions.
 
-### Github, Gitlab and Bitbucket
+### Github, Gitlab, CodeCommit and Bitbucket
 * License 
   - MIT
   - ISC
@@ -42,6 +42,10 @@ More files & providers in future versions.
 * Merge request
 * All files at once
 
+### CodeCommit specific
+* Buildspec (AWS CodeBuild)
+* Appspec (AWS CodeDeploy)
+
 ### Bitbucket specific
 * In future versions
 
@@ -49,7 +53,7 @@ More files & providers in future versions.
 * Existing or new
 * Large or small
 * Every language
-* Github, Gitlab or Bitbucket
+* Github, Gitlab, CodeCommit (AWS) or Bitbucket
 
 ![](community-score.png)
 
@@ -89,7 +93,7 @@ Generate all Github files example:
 
 Generate all recommended markdown documentation/templates for the Github, Gitlab and Bitbucket community standards
 ? Select a Git hosting provider: Github
-? Which files do you want to generate? All main files (without license, todo and readme)
+? Which Github files do you want to generate? All recommended files (other files can be generated separate)
 INFO: Start generating all recommended files...
 
 GENERATE: CODE_OF_CONDUCT.md...
@@ -109,13 +113,14 @@ Git provider question:
 ? Select a Git hosting provider: (Use arrow keys)
 ❯ Github
   Gitlab
+  CodeCommit (AWS)
   Bitbucket
 ```
 
 Generate file question: 
 ```shell  
-? Which files do you want to generate? (Use arrow keys)
-❯ All main files (without license, todo and readme)
+? Which Gitlab files do you want to generate? (Use arrow keys)
+❯ All recommended files (other files can be generated separate)
   License
   Changelog
   Code of conduct
@@ -128,7 +133,7 @@ Generate file question:
 Generate license example:  
 ```shell  
 ? Select a Git hosting provider: Github
-? Which files do you want to generate? License
+? Which Gtihub files do you want to generate? License
 GENERATE: LICENSE...
 ? Which type of license do you want to generate? MIT License
 ? Please fill in your Git username: Jeroenouw
