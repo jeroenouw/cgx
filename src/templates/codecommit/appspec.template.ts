@@ -1,18 +1,10 @@
-import { injectable, inject } from 'inversify';
-import { DefaultTemplate } from '../default/default.template';
 import { FileName } from '../../models/file';
+import { defaultTemplate } from '../default/default.template';
 
-@injectable()
-export class Appspec {
-    private fileName = FileName.APPSPEC;
+export function appspec() {
+    const fileName = FileName.APPSPEC;
 
-    constructor(@inject('DefaultTemplate') private defaultTemplate: DefaultTemplate) {}
-
-    public generateFile(): void {
-        this.defaultTemplate.generateFile(this.fileName, this.fileContent());
-    } 
-
-    private fileContent(): string {
+    const fileContent = (): string => {
         return `version: 0.0
 os: linux
 files:
@@ -31,5 +23,7 @@ hooks:
           timeout: 300
           runas: root
         `;
-     }
+    }
+    
+    return defaultTemplate(fileName, fileContent());
 }

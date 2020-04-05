@@ -1,21 +1,13 @@
-import { injectable, inject } from 'inversify';
-import { DefaultTemplate } from '../default/default.template';
 import { GitlabPath } from '../../models/path';
 import { FileName } from '../../models/file';
+import { defaultTemplate } from '../default/default.template';
 
-@injectable()
-export class MergeRequest {
-    private fileName = FileName.MERGE_REQUEST;
-    private hasPath = true;
-    private pathOfFile = GitlabPath.MERGE_REQUEST_TEMPLATE;
+export function mergeRequest() {
+    const fileName = FileName.MERGE_REQUEST;
+    const hasPath = true;
+    const filePath = GitlabPath.MERGE_REQUEST_TEMPLATE;
 
-    constructor(@inject('DefaultTemplate') private defaultTemplate: DefaultTemplate) {}
-
-    public generateFile(): void {
-        this.defaultTemplate.generateFile(this.fileName, this.fileContent(), this.hasPath, this.pathOfFile);
-    }
-
-    private fileContent(): string {
+    const fileContent = (): string => {
         return `# What does this implement/fix? Explain your changes.
 …
 
@@ -38,5 +30,7 @@ export class MergeRequest {
 - [ ] Edge
 - [ ] Opera
         `;
-     }
+    }
+
+    return defaultTemplate(fileName, fileContent(), hasPath, filePath);
 }

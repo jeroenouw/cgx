@@ -1,18 +1,10 @@
-import { injectable, inject } from 'inversify';
-import { DefaultTemplate } from '../default/default.template';
 import { FileName } from '../../models/file';
+import { defaultTemplate } from '../default/default.template';
 
-@injectable()
-export class CodeOfConduct {
-    private fileName = FileName.CODE_OF_CONDUCT;
+export function codeOfConduct() {
+    const fileName = FileName.CODE_OF_CONDUCT;
 
-    constructor(@inject('DefaultTemplate') private defaultTemplate: DefaultTemplate) {}
-
-    public generateFile(): void {
-        this.defaultTemplate.generateFile(this.fileName, this.fileContent());
-    }
-
-    private fileContent(): string {
+    const fileContent = (): string => {
         return `# Contributor Covenant Code of Conduct
 
 ## Our Pledge
@@ -61,4 +53,6 @@ This Code of Conduct is adapted from the [Contributor Covenant][homepage], versi
 [version]: http://contributor-covenant.org/version/1/4/
         `;
      }
+
+    return defaultTemplate(fileName, fileContent());
 }

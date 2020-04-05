@@ -1,21 +1,15 @@
-import { injectable, inject } from 'inversify';
-import { DefaultTemplate } from '../default/default.template';
+
 import { GitlabPath } from '../../models/path';
 import { FileName } from '../../models/file';
+import { defaultTemplate } from '../default/default.template';
 
-@injectable()
-export class FeatureProposal {
-    private fileName = FileName.FEATURE_PROPOSAL;
-    private hasPath = true;
-    private pathOfFile = GitlabPath.ISSUE_TEMPLATE;
 
-    constructor(@inject('DefaultTemplate') private defaultTemplate: DefaultTemplate) {}
+export function featureProposal() {
+    const fileName = FileName.FEATURE_PROPOSAL;
+    const hasPath = true;
+    const filePath = GitlabPath.ISSUE_TEMPLATE;
 
-    public generateFile(): void {
-        this.defaultTemplate.generateFile(this.fileName, this.fileContent(), this.hasPath, this.pathOfFile);
-    }
-
-    private fileContent(): string {
+    const fileContent = (): string => {
         return `### Problem to solve
 
 <!-- What problem do we solve? -->
@@ -48,11 +42,13 @@ Add all known Documentation Requirements here, per https://docs.gitlab.com/ee/de
 
 ### What does success look like, and how can we measure that?
 
-<!-- Define both the success metrics and acceptance criteria. Note that success metrics indicate the desired business outcomes, while acceptance criteria indicate when the solution is working correctly. If there is no way to measure success, link to an issue that will implement a way to measure this. -->
+<!-- Define both the success metrics and acceptance criteria. Note that success metrics indicate the desired business outcomes, while acceptance criteria indicate when the solution is working correctly. If there is no way to measure success, link to an issue that will implement a way to measure  -->
 
 ### Links / references
 
 /label ~feature
         `;
      }
+
+    return defaultTemplate(fileName, fileContent(), hasPath, filePath);
 }

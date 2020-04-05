@@ -1,17 +1,20 @@
 import fs from 'fs';
+import { showError } from './logger.util';
 
-import { injectable } from 'inversify';
+export const checkExistence = (path: string): boolean => {
+    return fs.existsSync(process.cwd() + path);
+};
 
-@injectable()
-export class Checker {
-    public checkExistence(path: string): boolean {
-        return fs.existsSync(process.cwd() + path);
-    };
-
-    public checkIfDirExistElseMakeDir(path: string): void {
-        let dir = this.checkExistence(path);
+export const checkIfDirExistElseMakeDir = (hasPath: boolean, path: string): void => {
+    if (hasPath) {
+        let dir = checkExistence(path);
         if (!dir) {
             fs.mkdirSync(process.cwd() + path, { recursive: true });
         }
     }
+}
+
+export const fileAlreadyExist = (fileName: string): void => {
+    showError(`${fileName} already exists!`);
+    process.exit(1);
 }

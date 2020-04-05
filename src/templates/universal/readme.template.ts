@@ -1,18 +1,10 @@
-import { injectable, inject } from 'inversify';
-import { DefaultTemplate } from '../default/default.template';
 import { FileName } from '../../models/file';
+import { defaultTemplate } from '../default/default.template';
 
-@injectable()
-export class Readme {
-    private fileName = FileName.README;
+export function readme() {
+    const fileName = FileName.README;
 
-    constructor(@inject('DefaultTemplate') private defaultTemplate: DefaultTemplate) {}
-
-    public generateFile(): void {
-        this.defaultTemplate.generateFile(this.fileName, this.fileContent());
-    }
-
-    private fileContent(): string {
+    const fileContent = (): string => {
         return `# Project Title
 
 ## Table of Contents
@@ -48,4 +40,5 @@ End with an example of getting some data out of the system or using it for a lit
 Add notes about how to use the system.`;
     }
 
+    return defaultTemplate(fileName, fileContent());
 }

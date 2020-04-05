@@ -1,18 +1,10 @@
-import { injectable, inject } from 'inversify';
-import { DefaultTemplate } from '../default/default.template';
 import { FileName } from '../../models/file';
+import { defaultTemplate } from '../default/default.template';
 
-@injectable()
-export class Buildspec {
-    private fileName = FileName.BUILDSPEC;
+export function buildspec() {
+    const fileName = FileName.BUILDSPEC;
 
-    constructor(@inject('DefaultTemplate') private defaultTemplate: DefaultTemplate) {}
-
-    public generateFile(): void {
-        this.defaultTemplate.generateFile(this.fileName, this.fileContent());
-    } 
-
-    private fileContent(): string {
+    const fileContent = (): string => {
         return `# Do not change version. This is the version of AWS buildspec, not the version of your buildspec file.
 version: 0.2
 
@@ -49,5 +41,7 @@ artifacts:
     - node_modules/lodash/*
         
         `;
-     }
+    }
+
+    return defaultTemplate(fileName, fileContent());
 }

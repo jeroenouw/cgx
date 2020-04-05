@@ -1,21 +1,13 @@
-import { injectable, inject } from 'inversify';
-import { DefaultTemplate } from '../default/default.template';
 import { GitlabPath } from '../../models/path';
 import { FileName } from '../../models/file';
+import { defaultTemplate } from '../default/default.template';
 
-@injectable()
-export class CITemplate {
-    private fileName = FileName.CI_TEMPLATE;
-    private hasPath = true;
-    private pathOfFile = GitlabPath.CI;
+export function ciTemplate() {
+    const fileName = FileName.CI_TEMPLATE;
+    const hasPath = true;
+    const filePath = GitlabPath.CI;
 
-    constructor(@inject('DefaultTemplate') private defaultTemplate: DefaultTemplate) {}
-
-    public generateFile(): void {
-        this.defaultTemplate.generateFile(this.fileName, this.fileContent(), this.hasPath, this.pathOfFile);
-    }
-
-    private fileContent(): string {
+    const fileContent = (): string => {
         return `image: "dev.gitlab.org:5005/gitlab/gitlab-build-images:ruby-2.6.3-golang-1.11-git-2.21-chrome-73.0-node-10.x-yarn-1.12-postgresql-9.6-graphicsmagick-1.3.29"
 
 variables:
@@ -64,11 +56,7 @@ include:
     - local: .gitlab/ci/test-metadata.gitlab-ci.yml
     - local: .gitlab/ci/yaml.gitlab-ci.yml
         `;
-     }
+    }
+
+    return defaultTemplate(fileName, fileContent(), hasPath, filePath);
 }
-
-
-
-
-
-

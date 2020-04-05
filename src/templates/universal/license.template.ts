@@ -1,74 +1,66 @@
 import fs from 'fs-extra';
 
-import { injectable, inject } from 'inversify';
-import { Logger } from '../../utils/logger.util';
-import { Checker } from '../../utils/checker.util';
+import { showGenerate, showCreate } from '../../utils/logger.util';
+import { checkExistence, fileAlreadyExist } from '../../utils/checker.util';
 import { Answer, LicenseValue } from '../../models/choice';
 import { userNameQuestion, licenseQuestion } from '../../questions';
 import { FileName } from '../../models/file';
 
-@injectable()
-export class License {
-    private currentYear = new Date().getFullYear();
-
-    constructor(@inject('Logger') private logger: Logger,
-                @inject('Checker') private checker: Checker) {}
+export async function license() {
+    const currentYear = new Date().getFullYear();
 
     // Seperate generateLicense method because of option to select out of multiple licenses
-    public async generateLicense(): Promise<void> {
-        const fileName = FileName.LICENSE;
-        let fileContent = '';
+    const fileName = FileName.LICENSE;
+    let fileContent = '';
 
-        this.logger.showGenerate(fileName);
+    showGenerate(fileName);
 
-        const check = this.checker.checkExistence(`/${fileName}`)
-        if (!check) {
-            const filepath: string = process.cwd() + `/${fileName}`;
-            let licenseAnswer: Answer = await licenseQuestion();
+    const check = checkExistence(`/${fileName}`)
+    if (!check) {
+        const filepath: string = process.cwd() + `/${fileName}`;
+        let licenseAnswer: Answer = await licenseQuestion();
 
-            if (licenseAnswer.licenses !== LicenseValue.GPL3) {
-                let githubNameAnswer: Answer = await userNameQuestion();
+        if (licenseAnswer.licenses !== LicenseValue.GPL3) {
+            let githubNameAnswer: Answer = await userNameQuestion();
 
-                switch(licenseAnswer.licenses) {
-                    case LicenseValue.APACHE: {
-                        fileContent = this.APACHEfileContent(githubNameAnswer.userName);
-                        return this.createFile(filepath, fileContent, fileName);
-                    }
-                    case LicenseValue.MIT: {
-                        fileContent = this.MITfileContent(githubNameAnswer.userName);
-                        return this.createFile(filepath, fileContent, fileName);
-                    }
-                    case LicenseValue.ISC: {
-                        fileContent = this.ISCfileContent(githubNameAnswer.userName);
-                        return this.createFile(filepath, fileContent, fileName);
-                    }
-                    case LicenseValue.BSD2: {
-                        fileContent = this.BSD2fileContent(githubNameAnswer.userName);
-                        return this.createFile(filepath, fileContent, fileName);
-                    }
+            switch(licenseAnswer.licenses) {
+                case LicenseValue.APACHE: {
+                    fileContent = APACHEfileContent(githubNameAnswer.userName);
+                    return createFile(filepath, fileContent, fileName);
                 }
-            } else if (licenseAnswer.licenses === LicenseValue.GPL3) {
-                fileContent = this.GPLv3fileContent();
-                return this.createFile(filepath, fileContent, fileName);
+                case LicenseValue.MIT: {
+                    fileContent = MITfileContent(githubNameAnswer.userName);
+                    return createFile(filepath, fileContent, fileName);
+                }
+                case LicenseValue.ISC: {
+                    fileContent = ISCfileContent(githubNameAnswer.userName);
+                    return createFile(filepath, fileContent, fileName);
+                }
+                case LicenseValue.BSD2: {
+                    fileContent = BSD2fileContent(githubNameAnswer.userName);
+                    return createFile(filepath, fileContent, fileName);
+                }
             }
-        }
-        else {
-            this.logger.showError(`${fileName} already exists!`);
-            process.exit(1);
+        } else if (licenseAnswer.licenses === LicenseValue.GPL3) {
+            fileContent = GPLv3fileContent();
+            return createFile(filepath, fileContent, fileName);
         }
     }
+    else {
+        fileAlreadyExist(fileName);
+    }
 
-    private createFile(filepath: string, fileContent: string, fileName: string): void {
+    function createFile(filepath: string, fileContent: string, fileName: string): void {
         fs.writeFile(filepath, fileContent, (err) => {
-            this.logger.showCreate(fileName, filepath);
+            showCreate(fileName, filepath);
             if (err) {throw err};
         });
     }
 
-    private MITfileContent(userName: string): string {
+    function MITfileContent(userName: string): string {
         return `MIT License
 
-Copyright (c) ${this.currentYear} ${userName}
+Copyright (c) ${currentYear} ${userName}
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -90,8 +82,8 @@ SOFTWARE.
         `;
     }
 
-    private BSD2fileContent(userName: string): string {
-        return `Copyright (c) ${this.currentYear} ${userName}
+    function BSD2fileContent(userName: string): string {
+        return `Copyright (c) ${currentYear} ${userName}
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -116,8 +108,8 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.`
     }
 
-    private ISCfileContent(userName: string): string {
-        return `Copyright (c) ${this.currentYear} ${userName}
+    function ISCfileContent(userName: string): string {
+        return `Copyright (c) ${currentYear} ${userName}
 
 Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, 
 provided that the above copyright notice and this permission notice appear in all copies.
@@ -127,7 +119,7 @@ IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CON
 WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.`
     }
 
-    private APACHEfileContent(userName: string): string {
+    function APACHEfileContent(userName: string): string {
         return `Apache License
 Version 2.0, January 2004
 http://www.apache.org/licenses/
@@ -316,7 +308,7 @@ file or class name and description of purpose be included on the
 same "printed page" as the copyright notice for easier
 identification within third-party archives.
 
-Copyright ${this.currentYear} ${userName}
+Copyright ${currentYear} ${userName}
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -331,7 +323,7 @@ See the License for the specific language governing permissions and
 limitations under the License.`;
     }
 
-    private GPLv3fileContent(): string {
+    function GPLv3fileContent(): string {
         return `GNU GENERAL PUBLIC LICENSE
 Version 3, 29 June 2007
 
@@ -426,7 +418,7 @@ on the Program.
 To "propagate" a work means to do anything with it that, without
 permission, would make you directly or secondarily liable for
 infringement under applicable copyright law, except executing it on a
-computer or modifying a private copy.  Propagation includes copying,
+computer or modifying a function copy.  Propagation includes copying,
 distribution (with or without modification), making available to the
 public, and in some countries other activities as well.
 

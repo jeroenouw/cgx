@@ -1,21 +1,13 @@
-import { injectable, inject } from 'inversify';
-import { DefaultTemplate } from '../default/default.template';
 import { GithubPath } from '../../models/path';
 import { FileName } from '../../models/file';
+import { defaultTemplate } from '../default/default.template';
 
-@injectable()
-export class BugReport {
-    private fileName = FileName.BUG_REPORT;
-    private hasPath = true;
-    private pathOfFile = GithubPath.ISSUE_TEMPLATE;
+export function bugReport() {
+    const fileName = FileName.BUG_REPORT;
+    const hasPath = true;
+    const filePath = GithubPath.ISSUE_TEMPLATE;
 
-    constructor(@inject('DefaultTemplate') private defaultTemplate: DefaultTemplate) {}
-
-    public generateFile(): void {
-        this.defaultTemplate.generateFile(this.fileName, this.fileContent(), this.hasPath, this.pathOfFile);
-    } 
-
-    private fileContent(): string {
+    const fileContent = (): string => {
         return `---
 name: Bug report
 about: Create a report to help us improve
@@ -55,5 +47,7 @@ If applicable, add screenshots to help explain your problem.
 **Additional context**
 Add any other context about the problem here.
         `;
-     }
+    }
+
+    return defaultTemplate(fileName, fileContent(), hasPath, filePath);
 }

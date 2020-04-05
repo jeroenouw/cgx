@@ -1,21 +1,13 @@
-import { injectable, inject } from 'inversify';
-import { DefaultTemplate } from '../default/default.template';
 import { GitlabPath } from '../../models/path';
 import { FileName } from '../../models/file';
+import { defaultTemplate } from '../default/default.template';
 
-@injectable()
-export class Bug {
-    private fileName = FileName.BUG;
-    private hasPath = true;
-    private pathOfFile = GitlabPath.ISSUE_TEMPLATE;
+export function bug() {
+    const fileName = FileName.BUG;
+    const hasPath = true;
+    const filePath = GitlabPath.ISSUE_TEMPLATE;
 
-    constructor(@inject('DefaultTemplate') private defaultTemplate: DefaultTemplate) {}
-
-    public generateFile(): void {
-        this.defaultTemplate.generateFile(this.fileName, this.fileContent(), this.hasPath, this.pathOfFile);
-    }
-
-    private fileContent(): string {
+    const fileContent = (): string => {
         return `### Summary
 
 (Summarize the bug encountered concisely)
@@ -85,7 +77,9 @@ logs, and code as it's tough to read otherwise.)
 
 /label ~bug
         `;
-     }
+    }
+
+    return defaultTemplate(fileName, fileContent(), hasPath, filePath);
 }
 
 

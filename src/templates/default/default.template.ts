@@ -1,61 +1,41 @@
 import fs from 'fs-extra';
 
-import { injectable, inject } from 'inversify';
-import { Logger } from '../../utils/logger.util';
-import { Checker } from '../../utils/checker.util';
+import { showGenerate, showCreate, showUpdate, showError } from '../../utils/logger.util';
+import { checkIfDirExistElseMakeDir, checkExistence, fileAlreadyExist } from '../../utils/checker.util';
 import { overwriteFileQuestion } from '../../questions';
 import { Answer } from '../../models/choice';
 
-@injectable()
-export class DefaultTemplate {
+export function defaultTemplate(fileNameWithExt: string, fileContent: string, hasPath = false, filePath = ''): void {
+    showGenerate(fileNameWithExt);
+    checkIfDirExistElseMakeDir(hasPath, filePath);
 
-    constructor(@inject('Logger') private logger: Logger,
-                @inject('Checker') private checker: Checker) {}
+    let fileExists = checkExistence(`${filePath}/${fileNameWithExt}`)
+    if (!fileExists) {
+        createFile(filePath, fileNameWithExt, fileContent);
+    } else {
+        overwriteFileOrThrowError(filePath, fileNameWithExt, fileContent);
+    }
+}
 
-    public generateFile(fileNameWithExt: string, fileContent: string, hasPath = false, filePath = ''): void {
-        this.logger.showGenerate(fileNameWithExt);
-
-        this.checkIfDirExistElseMakeDir(hasPath, filePath);
-
-        let fileExists = this.checker.checkExistence(`${filePath}/${fileNameWithExt}`)
-        if (!fileExists) {
-            this.createFile(filePath, fileNameWithExt, fileContent);
+function createFile(filePath: string, fileName: string, fileContent: string, fileAlreadyExists = false): void {
+    let filepath: string = process.cwd() + `${filePath}/${fileName}`;
+    fs.writeFile(filepath, fileContent, (error: Error) => {
+        if (!error && fileAlreadyExists === false) {
+            showCreate(fileName, filePath);
+        } else if (!error && fileAlreadyExists === true) {
+            showUpdate(fileName, filePath);
         } else {
-            this.overwriteFileOrThrowError(filePath, fileNameWithExt, fileContent);
+            showError(error);
         }
-    };
+    });
+}
 
-    private checkIfDirExistElseMakeDir(hasPath: boolean, pathOfFile: string): void {
-        if (hasPath) {
-            this.checker.checkIfDirExistElseMakeDir(pathOfFile);
-        }
-    }
+async function overwriteFileOrThrowError(filePath: string, fileNameWithExt: string, fileContent: string) {
+    let overwriteAnswer: Answer = await overwriteFileQuestion();
 
-    private createFile(filePath: string, fileName: string, fileContent: string, fileAlreadyExists = false): void {
-        let filepath: string = process.cwd() + `${filePath}/${fileName}`;
-        fs.writeFile(filepath, fileContent, (error: Error) => {
-            if (!error && fileAlreadyExists === false) {
-                this.logger.showCreate(fileName, filePath);
-            } else if (!error && fileAlreadyExists === true) {
-                this.logger.showUpdate(fileName, filePath);
-            } else {
-                this.logger.showError(error);
-            }
-        });
-    }
-
-    private async overwriteFileOrThrowError(filePath: string, fileNameWithExt: string, fileContent: string) {
-        let overwriteAnswer: Answer = await overwriteFileQuestion();
-
-        if (overwriteAnswer.overwrite === true) {
-            this.createFile(filePath, fileNameWithExt, fileContent, true);
-        } else {
-            this.fileAlreadyExist(fileNameWithExt);
-        }
-    }
-
-    private fileAlreadyExist(fileName: string): void {
-        this.logger.showError(`${fileName} already exists!`);
-        process.exit(1);
+    if (overwriteAnswer.overwrite === true) {
+        createFile(filePath, fileNameWithExt, fileContent, true);
+    } else {
+        fileAlreadyExist(fileNameWithExt);
     }
 }

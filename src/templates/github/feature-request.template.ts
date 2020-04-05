@@ -1,21 +1,13 @@
-import { injectable, inject } from 'inversify';
-import { DefaultTemplate } from '../default/default.template';
 import { GithubPath } from '../../models/path';
 import { FileName } from '../../models/file';
+import { defaultTemplate } from '../default/default.template';
 
-@injectable()
-export class FeatureRequest {
-    private fileName = FileName.FEATURE_REQUEST;
-    private hasPath = true;
-    private pathOfFile = GithubPath.ISSUE_TEMPLATE;
+export function featureRequest() {
+    const fileName = FileName.FEATURE_REQUEST;
+    const hasPath = true;
+    const filePath = GithubPath.ISSUE_TEMPLATE;
 
-    constructor(@inject('DefaultTemplate') private defaultTemplate: DefaultTemplate) {}
-
-    public generateFile(): void {
-        this.defaultTemplate.generateFile(this.fileName, this.fileContent(), this.hasPath, this.pathOfFile);
-    }
-
-    private fileContent(): string {
+    const fileContent = (): string => {
         return `---
 name: Feature request
 about: Suggest an idea for this project
@@ -37,5 +29,7 @@ A clear and concise description of any alternative solutions or features you've 
 **Additional context**
 Add any other context or screenshots about the feature request here.
         `;
-     }
+    }
+
+    return defaultTemplate(fileName, fileContent(), hasPath, filePath);
 }
