@@ -21,6 +21,6 @@ export async function githubFileQuestion(): Promise<Answer> {
         name: 'files',
         type: 'list',
         message: 'Which Github files do you want to generate?',
-        choices: listOfFiles
+        choices: listOfFiles,
     }]);
 }

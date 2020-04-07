@@ -21,6 +21,6 @@ export async function gitlabFileQuestion(): Promise<Answer> {
         name: 'files',
         type: 'list',
         message: 'Which Gitlab files do you want to generate?',
-        choices: listOfFiles
+        choices: listOfFiles,
     }]);
 }

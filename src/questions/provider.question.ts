@@ -14,6 +14,6 @@ export async function providerQuestion(): Promise<Answer> {
         name: 'provider',
         type: 'list',
         message: 'Select a Git hosting provider:',
-        choices: listOfFiles
+        choices: listOfFiles,
     }]);
 }

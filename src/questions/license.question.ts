@@ -15,6 +15,6 @@ export async function licenseQuestion(): Promise<Answer> {
         name: 'licenses',
         type: 'list',
         message: 'Which type of license do you want to generate?',
-        choices: listOfLicenses
+        choices: listOfLicenses,
     }]);
 }

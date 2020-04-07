@@ -7,6 +7,6 @@ export async function overwriteFileQuestion(): Promise<Answer> {
         name: 'overwrite',
         type: 'confirm',
         message: 'This file already exists. Do you want to overwrite it?',
-        default: false
+        default: false,
     }]);
 }

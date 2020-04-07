@@ -6,7 +6,6 @@ import { showInfo } from '../utils/logger.util';
 
 export async function bitbucketActions(): Promise<any>  {
     const bitbucketFileAnswer: Answer = await bitbucketFileQuestion();
-
     switch (bitbucketFileAnswer.files) {
         case UniversalChoiceValue.ALL: {
             showInfo(ConsoleMessage.START_GENERATING);

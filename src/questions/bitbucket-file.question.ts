@@ -17,6 +17,6 @@ export async function bitbucketFileQuestion(): Promise<Answer> {
         name: 'files',
         type: 'list',
         message: 'Which Bitbucket files do you want to generate?',
-        choices: listOfFiles
+        choices: listOfFiles,
     }]);
 }
