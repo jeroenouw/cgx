@@ -2,6 +2,7 @@ import { FileName } from '../../models/file';
 import { CommitData } from '../../models/commit-data';
 import * as childProcess from 'child_process';
 import { defaultTemplate } from '../default/default.template';
+import { showError } from '../../utils/logger.util';
 
 export function changelog() {
     const fileName = FileName.CHANGELOG;
@@ -28,9 +29,14 @@ __Author:__ ${commit.author} on ${commit.date} ${newLine} ${newLine}`;
     };
 
     const generateFileContent = (): string => {
-        const gitLogCommand: string = 'git log --pretty=format:"%h%n%d%n%an%n%s%n%ai%n%b%ae%n%n" --no-merges -z';
-        const gitLog: string = childProcess.execSync(gitLogCommand).toString().trim();
-        return JSONToMarkdown(gitLog).replace(/,/g, '');
+        try {
+            const gitLogCommand: string = 'git log --pretty=format:"%h%n%d%n%an%n%s%n%ai%n%b%ae%n%n" --no-merges -z';
+            const gitLog: string = childProcess.execSync(gitLogCommand).toString().trim();
+            return JSONToMarkdown(gitLog).replace(/,/g, '');
+        } catch(error) {
+            showError('This is not a git repository');
+            process.exit(1);
+        }
     };
 
     return defaultTemplate(fileName, generateFileContent());
