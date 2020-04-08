@@ -8,7 +8,7 @@ import Bluebird from 'bluebird';
 import * as logger from '../utils/logger.util';
 import { ConsoleMessage } from '../models/console-message';
 
-describe('src/bitbucket.actions', () => {
+describe('src/actions/bitbucket.actions', () => {
 
     let sandbox: sinon.SinonSandbox;
     let bitBucketFileQuestionStub: sinon.SinonStub;
@@ -41,7 +41,6 @@ describe('src/bitbucket.actions', () => {
                 files: UniversalChoiceValue.README,
                 stub: sinon.stub(templates, 'readme'),
                 function: templates.readme,
-
             },
             {
                 name: 'todo',
@@ -90,7 +89,7 @@ describe('src/bitbucket.actions', () => {
                 sandbox = sinon.createSandbox();
                 mockAnswer.files = caseItem.files;
                 bitBucketFileQuestionStub = sandbox.stub(questions, 'bitbucketFileQuestion').resolves(mockAnswer);
-                const bitBucket = await bitbucketActions()
+                const bitBucket: Promise<any> = await bitbucketActions()
                 expect(caseItem.stub).to.be.calledOnce;
                 expect(bitBucket).to.equal(caseItem.function());
                 sandbox.restore();
