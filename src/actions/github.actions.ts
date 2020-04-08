@@ -5,7 +5,6 @@ import { githubFileQuestion } from '../questions';
 import { ConsoleMessage } from '../models/console-message';
 import { showInfo } from '../utils/logger.util';
 
-
 export async function githubActions(): Promise<any> {
     const githubFileAnswer: Answer = await githubFileQuestion();
 

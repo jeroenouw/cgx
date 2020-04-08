@@ -9,7 +9,6 @@ import * as logger from '../utils/logger.util';
 import { ConsoleMessage } from '../models/console-message';
 
 describe('src/actions/bitbucket.actions', () => {
-
     let sandbox: sinon.SinonSandbox;
     let bitBucketFileQuestionStub: sinon.SinonStub;
 
@@ -17,15 +16,16 @@ describe('src/actions/bitbucket.actions', () => {
         files: {},
         userName: 'someUser',
         licenses: LicenseValue.MIT,
-        provider: ProviderValue.GITHUB,
+        provider: ProviderValue.BITBUCKET,
         overwrite: false,
     }
+
     beforeEach(() => {
         sandbox = sinon.createSandbox();
     });
 
     afterEach(() => {
-      sandbox.restore();
+        sandbox.restore();
     });
 
     it('should always call bitBucketFunction', async () => {
@@ -47,28 +47,24 @@ describe('src/actions/bitbucket.actions', () => {
                 files: UniversalChoiceValue.TODO,
                 stub: sinon.stub(templates, 'toDo'),
                 function: templates.toDo,
-
             },
             {
                 name: 'contributing',
                 files: UniversalChoiceValue.CONTRIBUTING,
                 stub: sinon.stub(templates, 'contributing'),
                 function: templates.contributing,
-
             },
             {
                 name: 'changelog',
                 files: UniversalChoiceValue.CHANGELOG,
                 stub: sinon.stub(templates, 'changelog'),
                 function: templates.changelog,
-
             },
             {
                 name: 'code of conduct',
                 files: UniversalChoiceValue.CODE_OF_CONDUCT,
                 stub: sinon.stub(templates, 'codeOfConduct'),
                 function: templates.codeOfConduct,
-
             },
             {
                 name: 'license',
@@ -77,15 +73,17 @@ describe('src/actions/bitbucket.actions', () => {
                 function: templates.license,
             },
         ];
-        it(`should call showInfo, contributing and return code of conduct template if all choice is made`, async () => {
+
+        it(`should call showInfo`, async () => {
             mockAnswer.files = UniversalChoiceValue.ALL;
-            const showInfoStub = sandbox.stub(logger, 'showInfo')
+            const showInfoStub = sandbox.stub(logger, 'showInfo');
             bitBucketFileQuestionStub = sandbox.stub(questions, 'bitbucketFileQuestion').resolves(mockAnswer);
             await bitbucketActions()
             expect(showInfoStub).to.be.calledOnceWithExactly(ConsoleMessage.START_GENERATING);
         })
+
         Bluebird.each(cases, (caseItem) => {
-            it(`should return ${caseItem.name} template if the choice is made for it`, async () => {
+            it(`should return ${caseItem.name} template if chosen`, async () => {
                 sandbox = sinon.createSandbox();
                 mockAnswer.files = caseItem.files;
                 bitBucketFileQuestionStub = sandbox.stub(questions, 'bitbucketFileQuestion').resolves(mockAnswer);
@@ -94,7 +92,7 @@ describe('src/actions/bitbucket.actions', () => {
                 expect(bitBucket).to.equal(caseItem.function());
                 sandbox.restore();
             })
-        })
+        });
     })
 });
 

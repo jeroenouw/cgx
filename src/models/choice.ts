@@ -1,9 +1,9 @@
 export interface Answer {
     files: Object;
-    userName: string;
-    licenses: LicenseValue;
     provider: ProviderValue;
-    overwrite: boolean;
+    userName: string;
+    licenses?: LicenseValue;
+    overwrite?: boolean;
 }
 
 export interface Choice {
