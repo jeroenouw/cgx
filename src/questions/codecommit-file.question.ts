@@ -19,6 +19,6 @@ export async function codecommitFileQuestion(): Promise<Answer> {
         name: 'files',
         type: 'list',
         message: 'Which CodeCommit files do you want to generate?',
-        choices: listOfFiles
+        choices: listOfFiles,
     }]);
 }

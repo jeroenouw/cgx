@@ -1,4 +1,3 @@
-
 import { FileName } from '../../models/file';
 import { CommitData } from '../../models/commit-data';
 import * as childProcess from 'child_process';
@@ -19,11 +18,11 @@ export function changelog() {
         const newLine: string = '\n';
         const json = gitLogToJSON(gitLog);
 
-        return `# Changelog 
-        
+        return `# Changelog
+
 ` + json.map((commit: CommitData) => {
-        return `__Commit:__ [${commit.hash}](${commit.hash}):  
-__Message:__ ${commit.message}  
+        return `__Commit:__ [${commit.hash}](${commit.hash}):
+__Message:__ ${commit.message}
 __Author:__ ${commit.author} on ${commit.date} ${newLine} ${newLine}`;
         })
     };
