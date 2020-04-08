@@ -1,0 +1,5 @@
+-r ts-node/register test/mocha.require.ts
+-R spec
+--recursive
+--watch-extensions ts
+ src/**/*.spec.ts
