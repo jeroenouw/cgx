@@ -22,6 +22,7 @@ More files & providers in future versions.
   - Apache 2.0
   - BSD 2-Clause
   - GPLv3
+  - CCOv1
 * Changelog
 * Contributing
 * Readme

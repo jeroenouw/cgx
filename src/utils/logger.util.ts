@@ -22,11 +22,11 @@ export const showInfo = (message: string): void => {
     console.info(cyan(ConsoleMessage.INFO) + message + newLine);
 }
 
-export const showGenerate= (fileName: string): void => {
+export const showGenerate = (fileName: string): void => {
     console.log(cyan(ConsoleMessage.GENERATE) + `${fileName}...`);
 }
 
-export const showCreate= (fileName: string, filePath: string): void => {
+export const showCreate = (fileName: string, filePath: string): void => {
     filePath
     ? console.log(green(ConsoleMessage.CREATE) + `${fileName} in ${filePath}`)
     : console.log(green(ConsoleMessage.CREATE) + `${fileName}`);

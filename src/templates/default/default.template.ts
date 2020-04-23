@@ -5,37 +5,27 @@ import { checkIfDirExistElseMakeDir, checkExistence, fileAlreadyExist } from '..
 import { overwriteFileQuestion } from '../../questions';
 import { Answer } from '../../models/choice';
 
-export function defaultTemplate(fileNameWithExt: string, fileContent: string, hasPath = false, filePath = ''): void {
+export function defaultTemplate(fileNameWithExt: string, fileContent: string, hasPath = false, filePath = ''): void | Promise<void> {
     showGenerate(fileNameWithExt);
     checkIfDirExistElseMakeDir(hasPath, filePath);
 
-    let fileExists = checkExistence(`${filePath}/${fileNameWithExt}`)
-    if (!fileExists) {
-        createFile(filePath, fileNameWithExt, fileContent);
-    } else {
-        overwriteFileOrThrowError(filePath, fileNameWithExt, fileContent);
-    }
+    const fileExists = checkExistence(`${filePath}/${fileNameWithExt}`)
+
+    if (!fileExists) return createFile(filePath, fileNameWithExt, fileContent);
+    return overwriteFileOrThrowError(filePath, fileNameWithExt, fileContent);
 }
 
 function createFile(filePath: string, fileName: string, fileContent: string, fileAlreadyExists = false): void {
-    let filepath: string = process.cwd() + `${filePath}/${fileName}`;
+    const filepath: string = process.cwd() + `${filePath}/${fileName}`;
     fs.writeFile(filepath, fileContent, (error: Error) => {
-        if (!error && fileAlreadyExists === false) {
-            showCreate(fileName, filePath);
-        } else if (!error && fileAlreadyExists === true) {
-            showUpdate(fileName, filePath);
-        } else {
-            showError(error);
-        }
+        if (!error && !fileAlreadyExists) return showCreate(fileName, filePath);
+        if (!error && fileAlreadyExists) return showUpdate(fileName, filePath);
+        return showError(error);
     });
 }
 
-async function overwriteFileOrThrowError(filePath: string, fileNameWithExt: string, fileContent: string) {
+async function overwriteFileOrThrowError(filePath: string, fileNameWithExt: string, fileContent: string): Promise<void> {
     let overwriteAnswer: Answer = await overwriteFileQuestion();
-
-    if (overwriteAnswer.overwrite === true) {
-        createFile(filePath, fileNameWithExt, fileContent, true);
-    } else {
-        fileAlreadyExist(fileNameWithExt);
-    }
+    if (overwriteAnswer.overwrite === true) return createFile(filePath, fileNameWithExt, fileContent, true);
+    return fileAlreadyExist(fileNameWithExt);
 }

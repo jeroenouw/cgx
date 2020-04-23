@@ -51,6 +51,7 @@ export enum LicenseValue {
     ISC = 'ISC',
     BSD2 = 'BSD2',
     GPL3 = 'GPL3',
+    CCO1 = 'CCO1',
 }
 
 export enum ProviderValue {

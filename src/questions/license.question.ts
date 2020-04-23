@@ -9,6 +9,7 @@ export async function licenseQuestion(): Promise<Answer> {
         {name: 'Apache 2.0 License', value: LicenseValue.APACHE},
         {name: 'BSD 2-Clause License', value: LicenseValue.BSD2},
         {name: 'GPLv3 License', value: LicenseValue.GPL3},
+        {name: 'CC0 1.0 License', value: LicenseValue.CCO1},
     ];
 
     return inquirer.prompt([{ 
