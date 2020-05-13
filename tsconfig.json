@@ -3,14 +3,14 @@
     "target": "ESNext",
     "module": "commonjs",
     "lib": ["es6", "es2015", "dom"],
-    "experimentalDecorators": true,
     "outDir": "lib",
     "rootDir": "src",
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "importHelpers": true
+    "importHelpers": true,
+    "removeComments": true
   },
   "exclude": [
     "node_modules",
