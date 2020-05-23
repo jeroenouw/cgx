@@ -92,7 +92,8 @@ Generate all Github files example:
  | |___  | |_| |  /  \
   \____|  \____| /_/\_\
 
-Generate all recommended markdown documentation/templates for the Github, Gitlab and Bitbucket community standards
+Generate all the recommended markdown documentation/templates for the Github and Gitlab community standards.  
+Files for CodeCommit (AWS) or Bitbucket can be generated too
 ? Select a Git hosting provider: Github
 ? Which Github files do you want to generate? All recommended files (other files can be generated separate)
 INFO: Start generating all recommended files...
@@ -103,8 +104,8 @@ GENERATE: bug_report.md...
 GENERATE: feature_request.md...
 GENERATE: pull_request_template.md...
 CREATE: bug_report.md in .github/ISSUE_TEMPLATE/bug_report.md
-CREATE: CODE_OF_CONDUCT.md in CODE_OF_CONDUCT.md.md
-CREATE: CONTRIBUTING.md in CONTRIBUTING.md
+CREATE: CODE_OF_CONDUCT.md.md
+CREATE: CONTRIBUTING.md
 CREATE: feature_request.md in .github/ISSUE_TEMPLATE/feature_request.md
 CREATE: pull_request_template.md in .github/PULL_REQUEST_TEMPLATE/pull_request_template.md
 ```
