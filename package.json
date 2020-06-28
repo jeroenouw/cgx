@@ -1,6 +1,6 @@
 {
   "name": "cgx",
-  "version": "1.12.2",
+  "version": "1.12.3",
   "description": "Generate all the recommended markdown documentation/templates (pre-filled) for the Github and Gitlab community standards. Files for CodeCommit (AWS) or Bitbucket can be generated too",
   "author": "Jeroen Ouwehand",
   "repository": "https://github.com/jeroenouw/cgx",
@@ -38,9 +38,9 @@
   },
   "dependencies": {
     "figlet": "^1.4.0",
-    "fs-extra": "^9.0.0",
-    "inquirer": "^7.1.0",
-    "kleur": "^3.0.3",
+    "fs-extra": "^9.0.1",
+    "inquirer": "^7.2.0",
+    "kleur": "^4.0.2",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
@@ -48,10 +48,10 @@
     "@types/bluebird": "^3.5.32",
     "@types/chai": "^4.2.11",
     "@types/figlet": "^1.2.0",
-    "@types/fs-extra": "^8.1.0",
+    "@types/fs-extra": "^9.0.1",
     "@types/inquirer": "^6.5.0",
     "@types/mocha": "^7.0.2",
-    "@types/node": "^14.0.1",
+    "@types/node": "^14.0.14",
     "@types/sinon": "^9.0.0",
     "@types/sinon-chai": "^3.2.4",
     "bluebird": "^3.7.2",
@@ -61,9 +61,9 @@
     "nyc": "^15.0.1",
     "sinon": "^9.0.1",
     "sinon-chai": "^3.5.0",
-    "ts-node": "^8.10.1",
+    "ts-node": "^8.10.2",
     "tslint": "^6.1.2",
     "typedoc": "^0.17.7",
-    "typescript": "^3.9.3"
+    "typescript": "^3.9.5"
   }
 }
