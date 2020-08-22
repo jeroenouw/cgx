@@ -24,6 +24,7 @@ export enum UniversalChoiceValue {
     TODO = 'TODO',
     README = 'README',
     CHANGELOG = 'CHANGELOG',
+    DOCKERFILE = 'DOCKERFILE',
 }
 
 export enum GithubChoiceValue {

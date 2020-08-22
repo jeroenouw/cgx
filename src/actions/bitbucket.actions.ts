@@ -1,4 +1,4 @@
-import { codeOfConduct, contributing, license, toDo, readme, changelog } from '../templates/universal';
+import { codeOfConduct, contributing, license, toDo, readme, changelog, dockerFile } from '../templates/universal';
 import { UniversalChoiceValue,Answer } from '../models/choice';
 import { bitbucketFileQuestion } from '../questions';
 import { ConsoleMessage } from '../models/console-message';
@@ -31,6 +31,9 @@ export async function bitbucketActions(): Promise<any>  {
         }
         case UniversalChoiceValue.README: {
             return readme();
+        }
+        case UniversalChoiceValue.DOCKERFILE: {
+            return dockerFile();
         }
     }
 }

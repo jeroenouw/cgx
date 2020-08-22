@@ -1,4 +1,4 @@
-import { codeOfConduct, contributing, license, toDo, readme, changelog } from '../templates/universal';
+import { codeOfConduct, contributing, license, toDo, readme, changelog, dockerFile } from '../templates/universal';
 import { UniversalChoiceValue, GitlabChoiceValue, Answer } from '../models/choice';
 import { bug, ciTemplate, featureProposal, mergeRequest } from '../templates/gitlab';
 import { gitlabFileQuestion } from '../questions';
@@ -48,6 +48,9 @@ export async function gitlabActions(): Promise<any> {
         }
         case GitlabChoiceValue.MERGE_REQUEST: {
             return mergeRequest();
+        }
+        case UniversalChoiceValue.DOCKERFILE: {
+            return dockerFile();
         }
     }
 }

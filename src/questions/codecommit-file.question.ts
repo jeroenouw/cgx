@@ -13,6 +13,7 @@ export async function codecommitFileQuestion(): Promise<Answer> {
         {name: 'Code of conduct', value: UniversalChoiceValue.CODE_OF_CONDUCT},
         {name: 'Todo', value: UniversalChoiceValue.TODO},
         {name: 'Readme', value: UniversalChoiceValue.README},
+        {name: 'Dockerfile', value: UniversalChoiceValue.DOCKERFILE},
     ];
 
     return inquirer.prompt([{ 

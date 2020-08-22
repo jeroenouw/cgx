@@ -28,6 +28,7 @@ More files & providers in future versions.
 * Readme
 * Todo
 * Code of Conduct
+* Dockerfile
 
 ### Github specific
 * Bug report (issue)
@@ -46,6 +47,7 @@ More files & providers in future versions.
 ### CodeCommit specific
 * Buildspec (AWS CodeBuild)
 * Appspec (AWS CodeDeploy)
+* All files at once
 
 ### Bitbucket specific
 * In future versions
@@ -130,6 +132,9 @@ Generate file question:
   Bug report (issue)
   Feature request (issue)
   Pull request template
+  Readme
+  Todo
+  Dockerfile
 ```
 
 Generate license example:  

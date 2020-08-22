@@ -1,4 +1,4 @@
-import { codeOfConduct, contributing, license, toDo, readme, changelog } from '../templates/universal';
+import { codeOfConduct, contributing, license, toDo, readme, changelog, dockerFile } from '../templates/universal';
 import { bugReport, featureRequest, pullRequest, security } from '../templates/github';
 import { UniversalChoiceValue, GithubChoiceValue, Answer } from '../models/choice';
 import { githubFileQuestion } from '../questions';
@@ -47,6 +47,9 @@ export async function githubActions(): Promise<any> {
         }
         case GithubChoiceValue.PULL_REQUEST: {
             return pullRequest();
+        }
+        case UniversalChoiceValue.DOCKERFILE: {
+            return dockerFile();
         }
     }
 }

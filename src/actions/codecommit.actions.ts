@@ -1,4 +1,4 @@
-import { codeOfConduct, contributing, license, toDo, readme, changelog } from '../templates/universal';
+import { codeOfConduct, contributing, license, toDo, readme, changelog, dockerFile } from '../templates/universal';
 import { appspec, buildspec } from '../templates/codecommit';
 import { UniversalChoiceValue, CodecommitChoiceValue, Answer } from '../models/choice';
 import { codecommitFileQuestion } from '../questions';
@@ -40,6 +40,9 @@ export async function codecommitActions(): Promise<any> {
         }
         case CodecommitChoiceValue.BUILDSPEC: {
             return buildspec();
+        }
+        case UniversalChoiceValue.DOCKERFILE: {
+            return dockerFile();
         }
     }
 }

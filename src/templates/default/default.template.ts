@@ -25,7 +25,7 @@ function createFile(filePath: string, fileName: string, fileContent: string, fil
 }
 
 async function overwriteFileOrThrowError(filePath: string, fileNameWithExt: string, fileContent: string): Promise<void> {
-    let overwriteAnswer: Answer = await overwriteFileQuestion();
+    const overwriteAnswer: Answer = await overwriteFileQuestion();
     if (overwriteAnswer.overwrite === true) return createFile(filePath, fileNameWithExt, fileContent, true);
     return fileAlreadyExist(fileNameWithExt);
 }

@@ -15,4 +15,5 @@ export enum FileName {
     SECURITY = 'SECURITY.md',
     APPSPEC = 'appspec.yml',
     BUILDSPEC = 'buildspec.yml',
+    DOCKERFILE = 'Dockerfile',
 }

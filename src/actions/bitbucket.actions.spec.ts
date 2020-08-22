@@ -43,6 +43,12 @@ describe('src/actions/bitbucket.actions', () => {
                 function: templates.readme,
             },
             {
+                name: 'dockerFile',
+                files: UniversalChoiceValue.DOCKERFILE,
+                stub: sinon.stub(templates, 'dockerFile'),
+                function: templates.dockerFile,
+            },
+            {
                 name: 'todo',
                 files: UniversalChoiceValue.TODO,
                 stub: sinon.stub(templates, 'toDo'),
