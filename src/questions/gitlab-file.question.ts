@@ -18,7 +18,7 @@ export async function gitlabFileQuestion(): Promise<Answer> {
         {name: 'Dockerfile', value: UniversalChoiceValue.DOCKERFILE},
     ];
 
-    return inquirer.prompt([{ 
+    return await inquirer.prompt([{
         name: 'files',
         type: 'list',
         message: 'Which Gitlab files do you want to generate?',

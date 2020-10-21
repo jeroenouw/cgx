@@ -14,7 +14,7 @@ export async function bitbucketFileQuestion(): Promise<Answer> {
         {name: 'Dockerfile', value: UniversalChoiceValue.DOCKERFILE},
     ];
 
-    return inquirer.prompt([{ 
+    return await inquirer.prompt([{
         name: 'files',
         type: 'list',
         message: 'Which Bitbucket files do you want to generate?',

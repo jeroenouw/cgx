@@ -7,7 +7,7 @@ import { showInfo } from '../utils/logger.util';
 
 export async function gitlabActions(): Promise<any> {
     const gitlabFileAnswer: Answer = await gitlabFileQuestion();
-    
+
     switch (gitlabFileAnswer.files) {
         case UniversalChoiceValue.ALL: {
             showInfo(ConsoleMessage.START_GENERATING);

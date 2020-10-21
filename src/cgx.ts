@@ -9,12 +9,12 @@ export async function CGX(): Promise<any> {
     const providerAnswer: Answer = await providerQuestion();
 
     if (providerAnswer.provider === ProviderValue.GITHUB) {
-        return githubActions();
+        return await githubActions();
     } else if (providerAnswer.provider === ProviderValue.GITLAB)  {
-        return gitlabActions();
+        return await gitlabActions();
     } else if (providerAnswer.provider === ProviderValue.BITBUCKET)  {
-        return bitbucketActions();
+        return await bitbucketActions();
     } else if (providerAnswer.provider === ProviderValue.CODECOMMIT)  {
-        return codecommitActions();
+        return await codecommitActions();
     }
 }
