@@ -1,16 +1,30 @@
 import sinon from 'sinon';
 import { expect } from 'chai';
-import * as questions from '../questions';
+import * as questions from '../questions/bitbucket-file.question';
 import { bitbucketActions } from './bitbucket.actions';
 import { Answer, ProviderValue, LicenseValue, UniversalChoiceValue } from '../models/choice';
-import * as templates from '../templates/universal';
-import Bluebird from 'bluebird';
 import * as logger from '../utils/logger.util';
 import { ConsoleMessage } from '../models/console-message';
+import * as contributing from '../templates/universal/contributing.template';
+import * as codeOfConduct from '../templates/universal/code-of-conduct.template';
+import * as readme from '../templates/universal/readme.template';
+import * as license from '../templates/universal/license.template';
+import * as dockerfile from '../templates/universal/docker-file.template';
+import * as changelog from '../templates/universal/changelog.template';
+import * as todo from '../templates/universal/todo.template';
 
 describe('src/actions/bitbucket.actions', () => {
     let sandbox: sinon.SinonSandbox;
     let bitBucketFileQuestionStub: sinon.SinonStub;
+    let contributingStub: sinon.SinonStub;
+    let codeOfConductStub: sinon.SinonStub;
+    let showInfoStub: sinon.SinonStub;
+    let dockerfileStub: sinon.SinonStub;
+    let changelogStub: sinon.SinonStub;
+    let licenseStub: sinon.SinonStub;
+    let todoStub: sinon.SinonStub;
+    let readmeStub: sinon.SinonStub;
+
 
     const mockAnswer: Answer = {
         files: {},
@@ -22,6 +36,15 @@ describe('src/actions/bitbucket.actions', () => {
 
     beforeEach(() => {
         sandbox = sinon.createSandbox();
+        showInfoStub = sandbox.stub(logger, 'showInfo');
+        bitBucketFileQuestionStub = sandbox.stub(questions, 'bitbucketFileQuestion').resolves(mockAnswer);
+        contributingStub = sandbox.stub(contributing, 'contributing');
+        codeOfConductStub = sandbox.stub(codeOfConduct, 'codeOfConduct');
+        dockerfileStub = sandbox.stub(dockerfile, 'dockerFile');
+        changelogStub = sandbox.stub(changelog, 'changelog');
+        licenseStub = sandbox.stub(license, 'license');
+        todoStub = sandbox.stub(todo, 'toDo');
+        readmeStub = sandbox.stub(readme, 'readme');
     });
 
     afterEach(() => {
@@ -29,76 +52,61 @@ describe('src/actions/bitbucket.actions', () => {
     });
 
     it('should always call bitBucketFunction', async () => {
-        bitBucketFileQuestionStub = sandbox.stub(questions, 'bitbucketFileQuestion').resolves(mockAnswer);
         await bitbucketActions();
         expect(bitBucketFileQuestionStub).to.be.called;
     });
 
     context('actions', () => {
-        const cases = [
-            {
-                name: 'readme',
-                files: UniversalChoiceValue.README,
-                stub: sinon.stub(templates, 'readme'),
-                function: templates.readme,
-            },
-            {
-                name: 'dockerFile',
-                files: UniversalChoiceValue.DOCKERFILE,
-                stub: sinon.stub(templates, 'dockerFile'),
-                function: templates.dockerFile,
-            },
-            {
-                name: 'todo',
-                files: UniversalChoiceValue.TODO,
-                stub: sinon.stub(templates, 'toDo'),
-                function: templates.toDo,
-            },
-            {
-                name: 'contributing',
-                files: UniversalChoiceValue.CONTRIBUTING,
-                stub: sinon.stub(templates, 'contributing'),
-                function: templates.contributing,
-            },
-            {
-                name: 'changelog',
-                files: UniversalChoiceValue.CHANGELOG,
-                stub: sinon.stub(templates, 'changelog'),
-                function: templates.changelog,
-            },
-            {
-                name: 'code of conduct',
-                files: UniversalChoiceValue.CODE_OF_CONDUCT,
-                stub: sinon.stub(templates, 'codeOfConduct'),
-                function: templates.codeOfConduct,
-            },
-            {
-                name: 'license',
-                files: UniversalChoiceValue.LICENSE,
-                stub: sinon.stub(templates, 'license'),
-                function: templates.license,
-            },
-        ];
 
         it(`should call showInfo`, async () => {
             mockAnswer.files = UniversalChoiceValue.ALL;
-            const showInfoStub = sandbox.stub(logger, 'showInfo');
-            bitBucketFileQuestionStub = sandbox.stub(questions, 'bitbucketFileQuestion').resolves(mockAnswer);
             await bitbucketActions()
             expect(showInfoStub).to.be.calledOnceWithExactly(ConsoleMessage.START_GENERATING);
         })
 
-        Bluebird.each(cases, (caseItem) => {
-            it(`should return ${caseItem.name} template if chosen`, async () => {
-                sandbox = sinon.createSandbox();
-                mockAnswer.files = caseItem.files;
-                bitBucketFileQuestionStub = sandbox.stub(questions, 'bitbucketFileQuestion').resolves(mockAnswer);
-                const bitBucket: Promise<any> = await bitbucketActions()
-                expect(caseItem.stub).to.be.calledOnce;
-                expect(bitBucket).to.equal(caseItem.function());
-                sandbox.restore();
-            })
-        });
+        it(`should call ci actions when ci-templates requested`, async () => {
+            mockAnswer.files = UniversalChoiceValue.README;
+            await bitbucketActions()
+            expect(readmeStub).to.be.calledOnce;
+        })
+
+        it(`should call dockerfile actions when dockerfile-templates requested`, async () => {
+            mockAnswer.files = UniversalChoiceValue.DOCKERFILE;
+            await bitbucketActions()
+            expect(dockerfileStub).to.be.calledOnce;
+        })
+
+        it(`should call todo actions when todo-templates requested`, async () => {
+            mockAnswer.files = UniversalChoiceValue.TODO;
+            await bitbucketActions()
+            expect(todoStub).to.be.calledOnce;
+        })
+
+        it(`should call contributing actions when contributing-templates requested`, async () => {
+            mockAnswer.files = UniversalChoiceValue.CONTRIBUTING;
+            await bitbucketActions()
+            expect(contributingStub).to.be.calledOnce;
+        })
+
+
+        it(`should call changelog actions when changelog-templates requested`, async () => {
+            mockAnswer.files = UniversalChoiceValue.CHANGELOG;
+            await bitbucketActions()
+            expect(changelogStub).to.be.calledOnce;
+        })
+
+        it(`should call code-of-conduct actions when code-of-conduct-templates requested`, async () => {
+            mockAnswer.files = UniversalChoiceValue.CODE_OF_CONDUCT;
+            await bitbucketActions()
+            expect(codeOfConductStub).to.be.calledOnce;
+        })
+
+        it(`should call license actions when license-templates requested`, async () => {
+            mockAnswer.files = UniversalChoiceValue.LICENSE;
+            await bitbucketActions()
+            expect(licenseStub).to.be.calledOnce;
+        })
+
     })
 });
 
