@@ -28,14 +28,14 @@ describe('src/templates/utils/checker.util', () => {
 
         it('directory does not exist', async () => {
             checkExistenceStub = sandbox.stub(checkerFunctions, 'checkExistence').returns(true);
-            await checkerFunctions.checkIfDirExistElseMakeDir(true, 'somePath');
+            await checkerFunctions.checkIfDirExistElseMakeDir('somePath');
             expect(checkExistenceStub).to.be.calledOnce;
             expect(checkExistenceStub).to.be.calledOnce;
         });
 
         it('directory does exist', async () => {
             checkExistenceStub = sandbox.stub(checkerFunctions, 'checkExistence').returns(false);
-            await checkerFunctions.checkIfDirExistElseMakeDir(true, 'somePath');
+            await checkerFunctions.checkIfDirExistElseMakeDir('somePath');
             expect(checkExistenceStub).to.be.calledOnce;
             expect(fsMkdirSyncstub).to.be.calledOnce;
         });

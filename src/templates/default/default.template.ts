@@ -5,9 +5,9 @@ import { checkIfDirExistElseMakeDir, checkExistence, fileAlreadyExist } from '..
 import { overwriteFileQuestion } from '../../questions';
 import { Answer } from '../../models/choice';
 
-export function defaultTemplate(fileNameWithExt: string, fileContent: string, hasPath = false, filePath = ''): void | Promise<void> {
+export function defaultTemplate(fileNameWithExt: string, fileContent: string, filePath = ''): void | Promise<void> {
     showGenerate(fileNameWithExt);
-    checkIfDirExistElseMakeDir(hasPath, filePath);
+    checkIfDirExistElseMakeDir(filePath);
 
     const fileExists = checkExistence(`${filePath}/${fileNameWithExt}`)
 

@@ -32,6 +32,8 @@ export enum GithubChoiceValue {
     FEATURE_REQUEST = 'FEATURE_REQUEST',
     PULL_REQUEST = 'PULL_REQUEST',
     SECURITY = 'SECURITY',
+    CODEQL_ANALYSIS = 'CODEQL_ANALYSIS',
+    NODE_CI = 'NODE_CI',
 }
 
 export enum GitlabChoiceValue {

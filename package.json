@@ -1,6 +1,6 @@
 {
   "name": "cgx",
-  "version": "1.13.4",
+  "version": "1.14.0",
   "description": "Generate all the recommended markdown documentation/templates (pre-filled) for the Github and Gitlab community standards. Files for CodeCommit (AWS) or Bitbucket can be generated too",
   "author": "Jeroen Ouwehand",
   "repository": "https://github.com/jeroenouw/cgx",
@@ -38,8 +38,8 @@
   },
   "dependencies": {
     "figlet": "^1.5.2",
-    "fs-extra": "^10.0.0",
-    "inquirer": "^8.1.5",
+    "fs-extra": "^10.0.1",
+    "inquirer": "^8.2.0",
     "kleur": "^4.1.4",
     "tslib": "^2.3.1"
   },
@@ -61,7 +61,7 @@
     "sinon-chai": "^3.7.0",
     "ts-node": "^10.2.1",
     "tslint": "^6.1.3",
-    "typedoc": "^0.22.5",
-    "typescript": "^4.4.3"
+    "typedoc": "^0.22.12",
+    "typescript": "^4.5.5"
   }
 }

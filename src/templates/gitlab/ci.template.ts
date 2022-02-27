@@ -4,7 +4,6 @@ import { defaultTemplate } from '../default/default.template';
 
 export function ciTemplate() {
     const fileName = FileName.CI_TEMPLATE;
-    const hasPath = true;
     const filePath = GitlabPath.CI;
 
     const fileContent = (): string => {
@@ -58,5 +57,5 @@ include:
         `;
     }
 
-    return defaultTemplate(fileName, fileContent(), hasPath, filePath);
+    return defaultTemplate(fileName, fileContent(), filePath);
 }

@@ -9,6 +9,8 @@ export async function githubFileQuestion(): Promise<Answer> {
         {name: 'Security vulnerability report', value: GithubChoiceValue.SECURITY},
         {name: 'Feature request (issue)', value: GithubChoiceValue.FEATURE_REQUEST},
         {name: 'Pull request', value: GithubChoiceValue.PULL_REQUEST},
+        {name: 'CodeQL Analysis', value: GithubChoiceValue.CODEQL_ANALYSIS},
+        {name: 'Node CI', value: GithubChoiceValue.NODE_CI},
         {name: 'License', value: UniversalChoiceValue.LICENSE},
         {name: 'Changelog', value: UniversalChoiceValue.CHANGELOG},
         {name: 'Contributing', value: UniversalChoiceValue.CONTRIBUTING},

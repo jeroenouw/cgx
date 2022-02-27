@@ -4,7 +4,6 @@ import { defaultTemplate } from '../default/default.template';
 
 export function featureRequest() {
     const fileName = FileName.FEATURE_REQUEST;
-    const hasPath = true;
     const filePath = GithubPath.ISSUE_TEMPLATE;
 
     const fileContent = (): string => {
@@ -31,5 +30,5 @@ Add any other context or screenshots about the feature request here.
         `;
     }
 
-    return defaultTemplate(fileName, fileContent(), hasPath, filePath);
+    return defaultTemplate(fileName, fileContent(), filePath);
 }

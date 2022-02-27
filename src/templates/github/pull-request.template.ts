@@ -4,7 +4,6 @@ import { defaultTemplate } from '../default/default.template';
 
 export function pullRequest() {
     const fileName = FileName.PULL_REQUEST;
-    const hasPath = true;
     const filePath = GithubPath.PULL_REQUEST_TEMPLATE;
 
     const fileContent = (): string => {
@@ -34,5 +33,5 @@ export function pullRequest() {
         `;
      }
 
-    return defaultTemplate(fileName, fileContent(), hasPath, filePath);
+    return defaultTemplate(fileName, fileContent(), filePath);
 }

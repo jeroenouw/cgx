@@ -35,6 +35,8 @@ More files & providers in future versions.
 * Security vulnerability report
 * Feature request (issue)
 * Pull request template
+* CodeQL Analysis
+* Node CI
 * All files at once
 
 ### Gitlab specific

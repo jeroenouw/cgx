@@ -6,7 +6,6 @@ import { defaultTemplate } from '../default/default.template';
 
 export function featureProposal() {
     const fileName = FileName.FEATURE_PROPOSAL;
-    const hasPath = true;
     const filePath = GitlabPath.ISSUE_TEMPLATE;
 
     const fileContent = (): string => {
@@ -50,5 +49,5 @@ Add all known Documentation Requirements here, per https://docs.gitlab.com/ee/de
         `;
      }
 
-    return defaultTemplate(fileName, fileContent(), hasPath, filePath);
+    return defaultTemplate(fileName, fileContent(), filePath);
 }

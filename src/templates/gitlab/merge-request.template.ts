@@ -4,7 +4,6 @@ import { defaultTemplate } from '../default/default.template';
 
 export function mergeRequest() {
     const fileName = FileName.MERGE_REQUEST;
-    const hasPath = true;
     const filePath = GitlabPath.MERGE_REQUEST_TEMPLATE;
 
     const fileContent = (): string => {
@@ -32,5 +31,5 @@ export function mergeRequest() {
         `;
     }
 
-    return defaultTemplate(fileName, fileContent(), hasPath, filePath);
+    return defaultTemplate(fileName, fileContent(), filePath);
 }

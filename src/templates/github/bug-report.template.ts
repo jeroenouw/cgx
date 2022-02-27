@@ -4,7 +4,6 @@ import { defaultTemplate } from '../default/default.template';
 
 export function bugReport() {
     const fileName = FileName.BUG_REPORT;
-    const hasPath = true;
     const filePath = GithubPath.ISSUE_TEMPLATE;
 
     const fileContent = (): string => {
@@ -49,5 +48,5 @@ Add any other context about the problem here.
         `;
     }
 
-    return defaultTemplate(fileName, fileContent(), hasPath, filePath);
+    return defaultTemplate(fileName, fileContent(), filePath);
 }

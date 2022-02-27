@@ -16,4 +16,6 @@ export enum FileName {
     APPSPEC = 'appspec.yml',
     BUILDSPEC = 'buildspec.yml',
     DOCKERFILE = 'Dockerfile',
+    CODEQL_ANALYSIS = 'codeql-analysis.yml',
+    NODE_CI = 'nodejs.yml',
 }

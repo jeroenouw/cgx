@@ -1,5 +1,5 @@
 import { codeOfConduct, contributing, license, toDo, readme, changelog, dockerFile } from '../templates/universal';
-import { bugReport, featureRequest, pullRequest, security } from '../templates/github';
+import { bugReport, featureRequest, pullRequest, security, codeqlAnalysis, nodeCI } from '../templates/github';
 import { UniversalChoiceValue, GithubChoiceValue, Answer } from '../models/choice';
 import { githubFileQuestion } from '../questions';
 import { ConsoleMessage } from '../models/console-message';
@@ -16,6 +16,8 @@ export async function githubActions(): Promise<any> {
             contributing();
             bugReport();
             featureRequest();
+            codeqlAnalysis();
+            nodeCI();
             return pullRequest();
         }
         case UniversalChoiceValue.LICENSE: {
@@ -41,6 +43,12 @@ export async function githubActions(): Promise<any> {
         }
         case GithubChoiceValue.BUG_REPORT: {
             return bugReport();
+        }
+        case GithubChoiceValue.CODEQL_ANALYSIS: {
+            return codeqlAnalysis();
+        }
+        case GithubChoiceValue.NODE_CI: {
+            return nodeCI();
         }
         case GithubChoiceValue.FEATURE_REQUEST: {
             return featureRequest();

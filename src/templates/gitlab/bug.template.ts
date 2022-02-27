@@ -4,7 +4,6 @@ import { defaultTemplate } from '../default/default.template';
 
 export function bug() {
     const fileName = FileName.BUG;
-    const hasPath = true;
     const filePath = GitlabPath.ISSUE_TEMPLATE;
 
     const fileContent = (): string => {
@@ -79,7 +78,7 @@ logs, and code as it's tough to read otherwise.)
         `;
     }
 
-    return defaultTemplate(fileName, fileContent(), hasPath, filePath);
+    return defaultTemplate(fileName, fileContent(), filePath);
 }
 
 
