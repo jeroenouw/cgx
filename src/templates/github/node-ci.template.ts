@@ -7,35 +7,43 @@ export function nodeCI() {
     const filePath = GithubPath.WORKFLOWS;
 
     const fileContent = (): string => {
-        return `name: Node CI
+        return `
+        name: Node CI
 
-on: [push]
-
-jobs:
-    build:
-
-    runs-on: ubuntu-latest
-
-    strategy:
-        matrix:
-        node-version: [10.x, 12.x]
-
-    steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js $ {{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-        node-version: $ {{ matrix.node-version }}
-    - name: Run refresh
-        run: npm run refresh
-    - name: Run tscov
-        run: npm run tscov
-    - name: Run build
-        run: npm run build
-    - name: Run docs
-        run: npm run docs
-        env:
-        CI: true
+        on:
+          push:
+            branches:
+              - main
+        
+        jobs:
+          build:
+            runs-on: ubuntu-latest
+        
+            strategy:
+              matrix:
+                node-version: [10.x, 12.x]
+        
+            steps:
+              - uses: actions/checkout@v2
+        
+              - name: Use Node.js $ {{ matrix.node-version }}
+                uses: actions/setup-node@v2
+                with:
+                  node-version: $ {{ matrix.node-version }}
+        
+              - name: Run refresh
+                run: npm run refresh
+        
+              - name: Run tscov
+                run: npm run tscov
+        
+              - name: Run build
+                run: npm run build
+        
+              - name: Run docs
+                run: npm run docs
+                env:
+                  CI: true
         `;
     }
 
